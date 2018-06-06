@@ -18,14 +18,10 @@ We aim to create an application that allow users to take a consultation number o
 
 ## Core Features
 
-Check clinic conditions easily
-* Users can see if the clinic is open, and the estimated waiting time at the clinic
+* **Check clinic conditions easily:** Users can see if the clinic is open, and the estimated waiting time at the clinic
 
-Digitises registration process for nurses
-* Nurses no longer have to ask every patient the same questions at the registration counter, this repetitive task can be carried out by the application. 
+* **Digitises registration process for nurses:** Nurses no longer have to ask every patient the same questions at the registration counter, this repetitive task can be carried out by the application. 
 
-Notification reminders to proceed to the clinic
-* Users can maximise the time spent resting outside the clinic
+* **Notification reminders to proceed to the clinic:** Users can maximise the time spent resting outside the clinic
 
-Notepad
-* Users can jot down and consolidate the key information they want to tell the doctor
+* **Notepad:** Users can jot down and consolidate the key information they want to tell the doctor
