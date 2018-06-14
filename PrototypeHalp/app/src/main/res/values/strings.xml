@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Prototype-Halp</string>
+    <string name="main_clinic_status">The UHC is now</string>
+    <string name="main_clinic_status_closed">CLOSED</string>
+    <string name="main_clinic_status_open">OPEN</string>
+    <string name="main_clinic_icon_content_desc">Clinic icon</string>
+    <string name="main_est_wait">Estimated Wait</string>
 </resources>
