@@ -1,7 +1,9 @@
 package com.kayheenjoyce.prototype_halp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -71,4 +73,11 @@ public class MainActivity extends AppCompatActivity {
         tView.setText(String.valueOf(MainActivity.estimatedWaitingTime));
     }
 
+    /**
+     * Starts a registration process by going to the next activity.
+     */
+    public void startRegistration(View view) {
+        Intent startReg = new Intent(this, RegistrationPage.class);
+        startActivity(startReg);
+    }
 }
