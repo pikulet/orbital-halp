@@ -10,9 +10,9 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     // The current opening status of the clinic
-    protected static boolean clinicIsOpen = false;
-    protected static final String clinicOpen = R.string.main_clinic_status_open;
-    protected static final String clinicClosed = R.string.main_clinic_status_closed;
+    protected static boolean clinicIsOpen = true;
+    protected static String CLINIC_OPEN;
+    protected static String CLINIC_CLOSED;
 
     // The current estimated waiting time at the clinic. Provided by the clinic.
     protected static int estimatedWaitingTime = Integer.MAX_VALUE;
@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        CLINIC_OPEN = getString(R.string.main_clinic_status_open);
+        CLINIC_CLOSED = getString(R.string.main_clinic_status_closed);
     }
 
     @Override
@@ -43,17 +46,15 @@ public class MainActivity extends AppCompatActivity {
      * In the future, this could be done by simply running an API call to the clinic
      */
     protected void updateClinicStatus() {
-
         // Retrieves the date and time, checking if this is within the clinic's opening hours.
         Calendar currentCalendar = Calendar.getInstance();
         // TODO
 
-        String currentClinicStatus = clinicIsOpen ? clinicOpen : clinicClosed;
+        String currentClinicStatus = clinicIsOpen ? CLINIC_OPEN : CLINIC_CLOSED;
 
         // Updates the displayed text
         TextView tView = findViewById(R.id.main_clinicStatus);
         tView.setText(currentClinicStatus);
-        }
     }
 
     /**
