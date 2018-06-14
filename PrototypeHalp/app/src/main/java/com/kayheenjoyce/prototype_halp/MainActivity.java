@@ -4,12 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.util.Calendar;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     // The current opening status of the clinic
     protected static boolean clinicIsOpen = false;
+    protected static final String clinicOpen = R.string.main_clinic_status_open;
+    protected static final String clinicClosed = R.string.main_clinic_status_closed;
 
     // The current estimated waiting time at the clinic. Provided by the clinic.
     protected static int estimatedWaitingTime = Integer.MAX_VALUE;
@@ -29,9 +32,28 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Updates the clinic status, if it is opened or not.
+     *      Currently, the clinic opening hours are set as:
+     *      Monday to Wednesday: 8.30am - 6.00pm
+     *      Thursday: 8.30am - 5.00pm
+     *      Friday: 8.30am - 5.30pm
+     *      We are closed on Saturday, Sunday & Public Holidays
+     *      Clinic is closed for lunch from 12.30pm - 1.30pm
+     *      Please note that last registration is 30 minutes prior to lunch or closing hours.
+     *
+     * In the future, this could be done by simply running an API call to the clinic
      */
     protected void updateClinicStatus() {
 
+        // Retrieves the date and time, checking if this is within the clinic's opening hours.
+        Calendar currentCalendar = Calendar.getInstance();
+        // TODO
+
+        String currentClinicStatus = clinicIsOpen ? clinicOpen : clinicClosed;
+
+        // Updates the displayed text
+        TextView tView = findViewById(R.id.main_clinicStatus);
+        tView.setText(currentClinicStatus);
+        }
     }
 
     /**
