@@ -1,40 +1,45 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-21:12
+ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-28:12
+MERGED from [com.android.support:design:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\e9719bbb1d7d2da28c3f85b807c9070d\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\16c0490b5c304a50284431df67aed8a1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\2d15c79d202df4a8be696c764ab9d7ef\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\a1bb987b9dc3ae3bf1cefd7c3eda62ab\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\12570244325734581d3cc7994c2c6f77\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\b84e878a908e3bd4a132a9f0d5622340\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\5f94645cb61cf5a8bee385f84d572c71\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\9684d23648aab594b5dcfe7c2747b462\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\5b8abaeb7f3729274b14804da0400930\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\a05e623dd5ebcb6989e71d2e134f0b68\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\893b039783a8dbd0a41cbb9aeef3e103\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\6bfe59da3335f557e16d8cf852acb63f\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\b9d37f537ae1167a18ec8b9e948e87a3\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\ec20efd628585942cc44c80504c74523\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\20b4a0cd62f2623eabf68f2ce5fc00d9\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\a0584d05f7da711b2092d2358d690ee2\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\06fc9a3821b54a33986ffbf2ee0e2e36\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-28:12
 	package
 		ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:3:5-46
 		INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-21:12
+		ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-28:12
 		INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-21:12
+		ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:1-28:12
 		INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:5:5-19:19
+ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:5:5-26:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\2d15c79d202df4a8be696c764ab9d7ef\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\2d15c79d202df4a8be696c764ab9d7ef\AndroidManifest.xml:9:5-20
 	android:supportsRtl
@@ -63,24 +68,46 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:16:17-77
 	android:name
 		ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:16:27-74
+activity#com.kayheenjoyce.prototype_halp.RegistrationPage
+ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:19:9-25:20
+	android:parentActivityName
+		ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:20:13-55
+	android:name
+		ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:19:19-51
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:22:13-24:49
+	android:value
+		ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:24:17-46
+	android:name
+		ADDED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml:23:17-63
 uses-sdk
 INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\Joyce\Desktop\orbital-halp\prototype\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:design:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\e9719bbb1d7d2da28c3f85b807c9070d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\e9719bbb1d7d2da28c3f85b807c9070d\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\16c0490b5c304a50284431df67aed8a1\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\16c0490b5c304a50284431df67aed8a1\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\2d15c79d202df4a8be696c764ab9d7ef\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\2d15c79d202df4a8be696c764ab9d7ef\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\a1bb987b9dc3ae3bf1cefd7c3eda62ab\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\a1bb987b9dc3ae3bf1cefd7c3eda62ab\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\12570244325734581d3cc7994c2c6f77\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\12570244325734581d3cc7994c2c6f77\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\b84e878a908e3bd4a132a9f0d5622340\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\b84e878a908e3bd4a132a9f0d5622340\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\5f94645cb61cf5a8bee385f84d572c71\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\5f94645cb61cf5a8bee385f84d572c71\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\9684d23648aab594b5dcfe7c2747b462\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\9684d23648aab594b5dcfe7c2747b462\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\5b8abaeb7f3729274b14804da0400930\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\5b8abaeb7f3729274b14804da0400930\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\a05e623dd5ebcb6989e71d2e134f0b68\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\a05e623dd5ebcb6989e71d2e134f0b68\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\893b039783a8dbd0a41cbb9aeef3e103\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\893b039783a8dbd0a41cbb9aeef3e103\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\6bfe59da3335f557e16d8cf852acb63f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\6bfe59da3335f557e16d8cf852acb63f\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\b9d37f537ae1167a18ec8b9e948e87a3\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\b9d37f537ae1167a18ec8b9e948e87a3\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Joyce\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\ec20efd628585942cc44c80504c74523\AndroidManifest.xml:20:5-44
