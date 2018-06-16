@@ -13,9 +13,9 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     // The current opening status of the clinic
-    protected static boolean clinicIsOpen = true;
-    protected static String CLINIC_OPEN;
-    protected static String CLINIC_CLOSED;
+    private static boolean clinicIsOpen;
+    private static String CLINIC_OPEN;      // Directly accessible strings
+    private static String CLINIC_CLOSED;    // Directly accessible strings
 
     // The current estimated waiting time at the clinic. Provided by the clinic.
     protected static int estimatedWaitingTime = Integer.MAX_VALUE;
@@ -25,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CLINIC_OPEN = getString(R.string.main_clinic_status_open);
-        CLINIC_CLOSED = getString(R.string.main_clinic_status_closed);
+        initialiseFields();
     }
 
     @Override
@@ -34,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         updateClinicStatus(); // Updates to see if the clinic is opened or closed.
         updateWaitingTime(); // Updates the clinic's estimated waiting time.
+    }
+
+    private void initialiseFields() {
+        CLINIC_OPEN = getString(R.string.main_clinic_status_open);
+        CLINIC_CLOSED = getString(R.string.main_clinic_status_closed);
+        clinicIsOpen = true;
     }
 
     /**
