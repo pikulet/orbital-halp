@@ -1,5 +1,6 @@
 package com.kayheenjoyce.halp;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -94,5 +95,7 @@ public class Registration extends AppCompatActivity {
         // Clinic received a registration and returns the consultation details.
 
         // For now, this will pretend that the registration is done.
+        Intent registerDone = new Intent(this, WaitingClinic.class);
+        startActivity(registerDone);
     }
 }

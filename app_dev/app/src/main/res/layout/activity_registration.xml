@@ -85,6 +85,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_hover"
+        android:onClick="sendRegistration"
         android:text="@string/reg_sign_in"
         android:textAllCaps="false"
         android:textColor="@android:color/background_light"
