@@ -8,6 +8,13 @@ public class Registration extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.enter, R.anim.exit);
         setContentView(R.layout.activity_registration);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.reverse_enter, R.anim.reverse_exit);
     }
 }

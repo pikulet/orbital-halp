@@ -16,7 +16,7 @@
         android:contentDescription="@string/main_clinic_icon_content_desc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_clinic" />
+        app:srcCompat="@drawable/ic_clinic" />
 
     <TextView
         android:id="@+id/main_clinic"
@@ -75,14 +75,14 @@
         app:layout_constraintTop_toBottomOf="@+id/main_estWaitTime" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/main_start_reg_button"
         android:layout_width="247dp"
         android:layout_height="73dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/button_up"
+        android:background="@drawable/button_hover"
         android:onClick="startRegistration"
         android:text="@string/main_start_reg"
         android:textAllCaps="false"
