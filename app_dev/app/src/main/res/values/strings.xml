@@ -13,5 +13,12 @@
     <string name="reg_fever">Fever</string>
     <string name="reg_cough">Cough</string>
     <string name="reg_sign_in">NUS Sign-In</string>
+    <string name="wait_time">60</string>
+    <string name="wait_your_turn">Your turn in</string>
+    <string name="wait_minutes">minutes</string>
+    <string name="wait_reached">I\'ve reached</string>
+    <string name="wait_toast_notif">Set a reminder</string>
+    <string name="wait_toast_come_early">Reach 15 min before your turn</string>
+
 
 </resources>
