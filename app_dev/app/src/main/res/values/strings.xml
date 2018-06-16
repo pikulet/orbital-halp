@@ -9,7 +9,9 @@
     <string name="main_start_reg">Not Feeling Well</string>
 
     <string name="reg_title">Registration</string>
-    <string name="reg_overseas">Overseas in last 14 days</string>
+    <string name="reg_overseas">Overseas last 14 days</string>
     <string name="reg_fever">Fever</string>
     <string name="reg_cough">Cough</string>
+    <string name="reg_sign_in">NUS Sign-In</string>
+
 </resources>
