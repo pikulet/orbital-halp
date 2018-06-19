@@ -1,9 +1,12 @@
 package com.kayheenjoyce.halp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 
 public class WaitingClinic extends AppCompatActivity {
 
@@ -17,6 +20,19 @@ public class WaitingClinic extends AppCompatActivity {
         // Horizontal transition between activities
         overridePendingTransition(R.anim.enter, R.anim.exit);
         setContentView(R.layout.activity_waiting_clinic);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Context context = getApplicationContext();
+        String text = getString(R.string.wait_toast_come_early);
+        int duration = Toast.LENGTH_LONG;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.setGravity(Gravity.LEFT|Gravity.BOTTOM, 0, -30);
+        toast.show();
     }
 
     @Override
