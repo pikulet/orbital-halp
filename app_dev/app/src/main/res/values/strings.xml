@@ -17,8 +17,9 @@
     <string name="wait_your_turn">Your turn in</string>
     <string name="wait_minutes">minutes</string>
     <string name="wait_reached">I\'ve reached</string>
-    <string name="wait_toast_notif">Set a reminder</string>
+    <string name="wait_toast_notification">Set a reminder</string>
     <string name="wait_toast_come_early">Reach 15 min before your turn</string>
+    <string name="wait_toast_timer">Set a reminder</string>
 
 
 </resources>

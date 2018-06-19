@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "151854479501",
+    "firebase_url": "https://halp-114b2.firebaseio.com",
+    "project_id": "halp-114b2",
+    "storage_bucket": "halp-114b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151854479501:android:1d0434a328916f4d",
+        "android_client_info": {
+          "package_name": "com.kayheenjoyce.halp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151854479501-dqtte1j3n1mv4jkvjvhigpcsvgf9s1sl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kayheenjoyce.halp",
+            "certificate_hash": "b0cc59d7f8430e4543750c2afbc53733041b8f14"
+          }
+        },
+        {
+          "client_id": "151854479501-0m5q42its7ua066sslbdjb9s9hq7d3vg.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "151854479501-0m5q42its7ua066sslbdjb9s9hq7d3vg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO-R5J6-wzi3cdPe24DOGrBu8uivHa_8g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151854479501-0m5q42its7ua066sslbdjb9s9hq7d3vg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume() { //lock the phone then open it again
         super.onResume();
         updateClinicStatus(); // Updates to see if the clinic is opened or closed.
         updateWaitingTime(); // Updates the clinic's estimated waiting time.
