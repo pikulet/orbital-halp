@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".SettingNotification">
 
     <Button
@@ -13,7 +14,7 @@
         android:layout_marginEnd="24dp"
         android:numeric="integer"
         android:onClick="setTime"
-        android:text="Button"
+        android:text="@string/setting_notif_button"
         app:layout_constraintBaseline_toBaselineOf="@+id/editText2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -28,6 +29,7 @@
         android:ems="10"
         android:inputType="number"
         android:selectAllOnFocus="true"
+        android:hint="@string/setting_notif_inputtext"
         app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

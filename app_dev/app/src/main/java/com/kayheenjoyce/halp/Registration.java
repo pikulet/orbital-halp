@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,7 @@ public class Registration extends AppCompatActivity {
     // Directly accessible drawables
     protected static Drawable button_up;            // Button up drawable
     protected static Drawable button_down;          // Button down drawable
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,5 +99,6 @@ public class Registration extends AppCompatActivity {
         // For now, this will pretend that the registration is done.
         Intent registerDone = new Intent(this, WaitingClinic.class);
         startActivity(registerDone);
+
     }
 }

@@ -20,6 +20,13 @@
     <string name="wait_toast_notification">Set a reminder</string>
     <string name="wait_toast_come_early">Reach 15 min before your turn</string>
     <string name="wait_toast_timer">Set a reminder</string>
+    <string name="setting_notif_button">Submit</string>
+    <string name="setting_notif_inputtext">Waiting time in minutes</string>
+    <string name="nus_register_button">Submit</string>
+    <string name="nus_register_instructions">Please key in your log in details below</string>
+    <string name="qr_scan_button">Scan QR Code</string>
+    <string name="qr_location_of_code">Where is it?</string>
+    <string name="qr_instructions">Please click the button below on arrival at UHC</string>
 
 
 </resources>
