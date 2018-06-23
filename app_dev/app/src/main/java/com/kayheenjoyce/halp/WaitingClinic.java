@@ -28,29 +28,15 @@ public class WaitingClinic extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // constantly reminds user to be there at clinic 15 minutes before actual time
-        Context context = getApplicationContext();
-        String text = getString(R.string.wait_toast_come_early);
-        int duration = Toast.LENGTH_LONG;
+        // Constantly reminds user to be there at clinic 15 minutes before actual time
+        showComeEarlyToast();
 
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.setGravity(Gravity.LEFT|Gravity.BOTTOM, 230, 575);
-        toast.show();
-
-        // reminds user to set notification if not set already, the handler staggers the pop up
-        // so they dont both appear at the same time, making screen less cluttered
+        // Reminds user to set notification if not set already, the handler staggers the pop up
+        // so they don't both appear at the same time, making screen less cluttered
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!SettingNotification.isTimeSet()) {
-                    Context context1 = getApplicationContext();
-                    String text1 = getString(R.string.wait_toast_notification);
-                    int duration1 = Toast.LENGTH_LONG;
-
-                    Toast toast1 = Toast.makeText(context1, text1, duration1);
-                    toast1.setGravity(Gravity.LEFT|Gravity.BOTTOM, 500, 1400);
-                    toast1.show();
-                }
+                showReminderToast();
             }
         }, 3500);
 
@@ -62,6 +48,36 @@ public class WaitingClinic extends AppCompatActivity {
 
         // Horizontal transition between activities
         overridePendingTransition(R.anim.reverse_enter, R.anim.reverse_exit);
+    }
+
+    /**
+     * Displays the toast notification to come early.
+     * Displayed upon resuming the page of the clinic waiting.
+     */
+    private void showComeEarlyToast() {
+        Context context = getApplicationContext();
+        String text = getString(R.string.wait_toast_come_early);
+        int duration = Toast.LENGTH_LONG;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.BOTTOM, 0, 100);
+        toast.show();
+    }
+
+    /**
+     * Displays the toast notification to set a reminder.
+     * Only displayed when a reminder has not been set by the user.
+     */
+    private void showReminderToast() {
+        if (!SettingNotification.isTimeSet()) {
+            Context context = getApplicationContext();
+            String text = getString(R.string.wait_toast_notification);
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.setGravity(Gravity.RIGHT | Gravity.TOP, 36, 36);
+            toast.show();
+        }
     }
 
     /**
