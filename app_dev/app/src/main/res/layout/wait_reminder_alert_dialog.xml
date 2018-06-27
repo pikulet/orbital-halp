@@ -6,18 +6,10 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/textView2"
+    <ListView
+        android:id="@+id/wait_reminder_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/wait_reminder_remind_me_xx" />
-
-    <Spinner xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/wait_reminder_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorSecondary">
-    </Spinner>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
 

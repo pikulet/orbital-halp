@@ -79,4 +79,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wait_mins" />
 
+    <include layout="@layout/wait_reminder_alert_dialog" />
+
 </android.support.constraint.ConstraintLayout>

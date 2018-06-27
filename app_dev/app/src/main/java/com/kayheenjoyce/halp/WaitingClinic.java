@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -40,16 +41,16 @@ public class WaitingClinic extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // Retrieve the time of the consultation from Firebase
+        // Retrieve the time of the consultation from local storage.
         // TODO
-
-        // Convert the consultation time to a waiting time
+        //
+        // Recalculate and convert the consultation time to a waiting time
         // TODO
 
         // Constantly reminds user to be there at clinic 15 minutes before actual time
         showComeEarlyToast();
 
-        // Check from Firebase if the reminder has been set
+        // Check from local storage if the reminder has been set
         // TODO
 
         // Reminds user to set notification if not set already, the handler staggers the pop up
@@ -140,17 +141,15 @@ public class WaitingClinic extends AppCompatActivity {
             timings.add(i.toString());
         }
 
-        /*
         // Create an array adapter to be converted to the Spinner
         ArrayAdapter<String> timingsAdapter
                 = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, timings);
 
-        timingsAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
         // Set the spinner adapter
-        Spinner timingSpinner = findViewById(R.id.wait_reminder_spinner);
-        timingSpinner.setAdapter(timingsAdapter);
-        */
+        ListView timingList = findViewById(R.id.wait_reminder_list);
+        timingList.setAdapter(timingsAdapter);
+
     }
 
     /**
