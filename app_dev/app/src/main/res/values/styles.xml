@@ -14,4 +14,12 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <!-- Alert Dialog Style -->
+    <style name="AlertDialogText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">30dp</item>
+    </style>
+
 </resources>

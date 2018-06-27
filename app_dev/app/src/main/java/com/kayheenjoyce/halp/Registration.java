@@ -83,9 +83,7 @@ public class Registration extends AppCompatActivity {
 
     /**
      * Lets the user sign in to NUS OPENID, and sends a registration to UHC.
-     * In return, the clinic will return the
-     *  (1) Waiting Time
-     *  (2) Room Number
+     * In return, the clinic will return a RegistrationEntry object.
      */
     public void sendRegistration(View buttonView) {
         // TODO
