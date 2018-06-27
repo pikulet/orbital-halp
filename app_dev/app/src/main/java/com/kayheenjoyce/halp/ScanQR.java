@@ -29,4 +29,9 @@ public class ScanQR extends AppCompatActivity {
         });
 
     }
+
+    public void finishScan(View view) {
+        Intent finishScan = new Intent(this, RoomNumberAndNotes.class);
+        startActivity(finishScan);
+    }
 }
