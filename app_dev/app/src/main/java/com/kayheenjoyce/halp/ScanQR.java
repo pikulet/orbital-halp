@@ -14,6 +14,7 @@ public class ScanQR extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_qr);
+        overridePendingTransition(R.anim.enter, R.anim.exit);
 
         // stores the qr return value for debugging
         tvresult = (TextView) findViewById(R.id.instructions);
@@ -29,7 +30,15 @@ public class ScanQR extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
+        // Horizontal transition between activities
+        overridePendingTransition(R.anim.reverse_enter, R.anim.reverse_exit);
+    }
+
+    // can remove this and the button once we know that the qr code scanning to room num and notes works.
     public void finishScan(View view) {
         Intent finishScan = new Intent(this, RoomNumberAndNotes.class);
         startActivity(finishScan);
