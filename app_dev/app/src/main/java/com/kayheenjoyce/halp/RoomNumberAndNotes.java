@@ -23,6 +23,7 @@ public class RoomNumberAndNotes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_number_and_notes);
+        overridePendingTransition(R.anim.enter, R.anim.exit);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +91,15 @@ public class RoomNumberAndNotes extends AppCompatActivity {
     // this button clears the notes taken for the doctor, so that the next time
     // the user goes to see the doctor, the notes will be clear again.
     public void completed(View view) {
-       this.deleteFile("Note1.txt");
+        this.deleteFile("Note1.txt");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        // Horizontal transition between activities
+        overridePendingTransition(R.anim.reverse_enter, R.anim.reverse_exit);
     }
 
 }
