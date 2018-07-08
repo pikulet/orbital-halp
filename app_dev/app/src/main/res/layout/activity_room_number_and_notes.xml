@@ -13,7 +13,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
         android:gravity="top"
-        android:hint="Write your doctor's notes here"
+        android:hint="Write your notes to your doctor here"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

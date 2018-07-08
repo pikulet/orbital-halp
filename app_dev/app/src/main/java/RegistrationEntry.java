@@ -23,21 +23,25 @@ public class RegistrationEntry {
      * Constructor for a new RegistrationEntry.
      */
     public RegistrationEntry(String studentID) {
+
         this.studentID = studentID;
     }
 
     /** Getter for the studentID. */
     public String getStudentID() {
+
         return this.studentID;
     }
 
     /** Getter for the consultation time. */
     public GregorianCalendar getConsultationTime() {
+
         return this.consultationTime;
     }
 
     /** Getter for the room number. */
     public int getRoomNumber() {
+
         return this.roomNumber;
     }
 

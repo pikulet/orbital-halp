@@ -11,19 +11,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:label = "Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registration" />
-        <activity android:name=".WaitingClinic" />
-        <activity android:name=".ScanQR" />
+        <activity android:name=".Registration"
+            android:label = "Registration"/>
+        <activity android:name=".WaitingClinic"
+            android:label = "Waiting for your turn"/>
+        <activity android:name=".ScanQR"
+            android:label = "Scan the QR code" />
         <activity android:name=".Consultation" />
-        <activity android:name=".ScanActivity" />
-        <activity android:name=".RoomNumberAndNotes"></activity>
+        <activity android:name=".ScanActivity"
+            android:label = "Please scan the QR code"/>
+        <activity android:name=".RoomNumberAndNotes"
+            android:label = "Before seeing the doctor" ></activity>
     </application>
 
 </manifest>

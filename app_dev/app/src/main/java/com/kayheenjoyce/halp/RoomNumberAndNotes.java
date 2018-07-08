@@ -91,6 +91,7 @@ public class RoomNumberAndNotes extends AppCompatActivity {
     // this button clears the notes taken for the doctor, so that the next time
     // the user goes to see the doctor, the notes will be clear again.
     public void completed(View view) {
+
         this.deleteFile("Note1.txt");
     }
 
