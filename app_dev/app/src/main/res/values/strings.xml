@@ -22,9 +22,12 @@
     <string name="wait_toast_come_early">Reach 15 min before your turn</string>
     <string name="wait_toast_timer">Set a reminder</string>
     <string name="wait_reminder_remind_me_xx">Remind me ___ minutes before my consult</string>
+    <string name="wait_reminder_set_before">Will remind you </string>
+    <string name="wait_reminder_set_after"> mins before consult</string>
     <string name="wait_reminder_confirm">OK</string>
 
     <string name="qr_scan_button">Scan QR Code</string>
     <string name="qr_location_of_code">Where is it?</string>
     <string name="qr_instructions">Please click the button below on arrival at UHC</string>
+
 </resources>

@@ -104,60 +104,82 @@ public class WaitingClinic extends AppCompatActivity {
     }
 
     /**
+     * Displays the toast notification that the reminder has been set.
+     */
+    private void showReminderSetToast(Integer reminderMinutes) {
+        Context context = getApplicationContext();
+        String text = getString(R.string.wait_reminder_set_before)
+                + reminderMinutes.toString()
+                + getString(R.string.wait_reminder_set_after);
+
+        int duration = Toast.LENGTH_LONG;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.BOTTOM, 0, 100);
+        toast.show();
+    }
+
+    /**
      * Sets a phone alarm. The user can select X minutes before their appointment.
      * Alarm is set for COUNTDOWN TIME - X minutes later.
      */
     public void setReminder(View view) {
 
-        calculateReminderTimes();   // Creates the drop-down timing list based on the countdown
+        // Future expansion: modify reminder timings
 
-        AlertDialog alertDialog = new AlertDialog.Builder(WaitingClinic.this)
-                // Set title
-                .setTitle(getString(R.string.wait_reminder_remind_me_xx))
-                // Set cancellable
-                .setCancelable(true)
-                // Set view
-                .setView(R.layout.wait_reminder_alert_dialog)
-                .create();
+        if (!reminderSet) {
+            // Creates the drop-down timing list based on the countdown
+            final ArrayAdapter<Integer> timingsAdapter = calculateReminderTimes();
 
-        alertDialog.show();
+            AlertDialog alertDialog = new AlertDialog.Builder(WaitingClinic.this)
+                    // Set title
+                    .setTitle(getString(R.string.wait_reminder_remind_me_xx))
+                    // Set cancellable
+                    .setCancelable(true)
+                    // Set adapter
+                    .setAdapter(timingsAdapter, new DialogInterface.OnClickListener() {
 
-        // Update on Firebase that the reminder has been set
-        // TODO
+                        @Override
+                        public void onClick(DialogInterface dialog, int itemSelected) {
+                            int reminderMinutes = timingsAdapter.getItem(itemSelected);
+                            createNotificationIn(reminderMinutes);
+                            dialog.dismiss();
+                        }
+
+                    })
+                    .create();
+
+            alertDialog.show();
+        }
     }
 
     /**
      * Helper method to create a drop-down list of possible reminder times, based on the countdown.
      * Lots of errors in this method.
      */
-    private void calculateReminderTimes() {
+    private ArrayAdapter<Integer> calculateReminderTimes() {
 
         int countDown = this.countDown;
 
         // Add timings to the arraylist in intervals of five minutes, up to but not including the
         // time left on the countdown
-        ArrayList<String> timings = new ArrayList<>();
-        for (Integer i = 0; i < countDown; i += 5) {
-            timings.add(i.toString());
+        ArrayList<Integer> timings = new ArrayList<>();
+        for (Integer i = 15; i < countDown; i += 5) {
+            timings.add(i);
         }
 
-        // Create an array adapter to be converted to the Spinner
-        ArrayAdapter<String> timingsAdapter
+        // Create an array adapter to be converted to the Alert Dialog
+        ArrayAdapter<Integer> timingsAdapter
                 = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, timings);
 
-
-        // Set the spinner adapter
-        ListView timingList = findViewById(R.id.wait_reminder_list);
-        timingList.setAdapter(timingsAdapter);
-
+        return timingsAdapter;
     }
 
     /**
-     * User presses the confirm button on the alert dialog, setting an alarm.
+     * User presses the timing on the alert dialog, setting an alarm.
+     * @param minutesSelected User wants to be reminder x minutes before their consultation
      */
-    public void reminderTimeConfirmed(View view) {
-        int minutesSelected = 20; // E.g. user chose to remind 20 minutes before consultation
-        // TODO
+    private void createNotificationIn(int minutesSelected) {
 
         // Calculates the time that the notification should be set
         GregorianCalendar currentTime = (GregorianCalendar)GregorianCalendar.getInstance();
@@ -165,6 +187,9 @@ public class WaitingClinic extends AppCompatActivity {
 
         // Set a phone notification based on the minutes selected and the current time.
         // TODO
+
+        // Inform the user that the reminder has been set
+        showReminderSetToast(minutesSelected);
     }
 
     /**
