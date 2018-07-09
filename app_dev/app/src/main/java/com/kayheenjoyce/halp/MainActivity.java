@@ -67,7 +67,39 @@ public class MainActivity extends AppCompatActivity {
     protected void updateClinicStatus() {
         // Retrieves the date and time, checking if this is within the clinic's opening hours.
         Calendar currentCalendar = Calendar.getInstance();
-        // TODO
+
+        // Opening time
+        Calendar openingTime = Calendar.getInstance();
+        openingTime.set(Calendar.HOUR_OF_DAY, 8);
+        openingTime.set(Calendar.MINUTE, 30);
+
+        // Closing time
+        Calendar closingTime = Calendar.getInstance();
+        closingTime.set(Calendar.HOUR_OF_DAY, 18);
+
+        // Lunch time starts
+        Calendar lunchStartTime = Calendar.getInstance();
+        openingTime.set(Calendar.HOUR_OF_DAY, 12);
+        openingTime.set(Calendar.MINUTE, 30);
+
+        // Lunch time ends
+        Calendar lunchEndTime = Calendar.getInstance();
+        openingTime.set(Calendar.HOUR_OF_DAY, 13);
+        openingTime.set(Calendar.MINUTE, 30);
+
+        if (currentCalendar.DAY_OF_WEEK == Calendar.SATURDAY ||
+            currentCalendar.DAY_OF_WEEK == Calendar.SUNDAY) {
+            // The clinic is not open on weekends
+            clinicIsOpen = false;
+        } else if (currentCalendar.before(openingTime) || currentCalendar.after(closingTime)) {
+            // The clinic has fixed opening hours
+            clinicIsOpen = false;
+        } else if (currentCalendar.after(lunchStartTime) && currentCalendar.before(lunchEndTime)) {
+            // The clinic is closed for lunch
+            clinicIsOpen = false;
+        } else {
+            clinicIsOpen = true;
+        }
 
         String currentClinicStatus = clinicIsOpen ? CLINIC_OPEN : CLINIC_CLOSED;
 

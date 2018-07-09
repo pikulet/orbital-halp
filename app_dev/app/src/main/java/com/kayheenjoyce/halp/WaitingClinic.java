@@ -108,8 +108,8 @@ public class WaitingClinic extends AppCompatActivity {
      */
     private void showReminderSetToast(Integer reminderMinutes) {
         Context context = getApplicationContext();
-        String text = getString(R.string.wait_reminder_set_before)
-                + reminderMinutes.toString()
+        String text = getString(R.string.wait_reminder_set_before) + " "
+                + reminderMinutes.toString() + " "
                 + getString(R.string.wait_reminder_set_after);
 
         int duration = Toast.LENGTH_LONG;
