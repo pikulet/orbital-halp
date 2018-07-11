@@ -3,6 +3,8 @@ package com.kayheenjoyce.halp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.zxing.Result;
 
@@ -15,8 +17,13 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     public void onCreate(Bundle state) {
         super.onCreate(state);
         overridePendingTransition(R.anim.enter, R.anim.exit);
-        mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
-        setContentView(mScannerView);                // Set the scanner view as the content view
+//        mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
+//        setContentView(mScannerView);                // Set the scanner view as the content view
+        setContentView(R.layout.activity_scan);
+
+        ViewGroup contentFrame = (ViewGroup) findViewById(R.id.content_frame);
+        mScannerView = new ZXingScannerView(this);
+        contentFrame.addView(mScannerView);
     }
 
     @Override
@@ -53,6 +60,17 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
         // If you would like to resume scanning, call this method below:
         //ScannerView.resumeCameraPreview(this);
+    }
+
+    // Back button calls this method
+    public void back(View view) {
+        onBackPressed();
+    }
+
+    // Skip button calls this method, to change it to something once we decide to.
+    public void skip(View view) {
+        Intent finalPage = new Intent(ScanActivity.this, RoomNumberAndNotes.class);
+        startActivity(finalPage);
     }
 
 }

@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RoomNumberAndNotes">
+    tools:context=".RoomNumberAndNotes"
+    android:background="@color/colorPrimary">
 
     <EditText
         android:id="@+id/EditText1"
         android:layout_width="410dp"
-        android:layout_height="338dp"
+        android:layout_height="359dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
         android:gravity="top"
@@ -20,7 +21,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView"
@@ -29,6 +30,7 @@
         android:layout_marginTop="36dp"
         android:text="@string/room_room"
         android:textAlignment="textEnd"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.422"
@@ -39,13 +41,13 @@
         android:id="@+id/fab"
         android:layout_width="69dp"
         android:layout_height="62dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@+id/EditText1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.959"
+        app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_menu_save" />
 
@@ -58,6 +60,7 @@
         android:layout_marginTop="36dp"
         android:text="16"
         android:textAlignment="textStart"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/EditText1"
         app:layout_constraintStart_toEndOf="@+id/textView"
@@ -66,15 +69,21 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="121dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_hover"
         android:onClick="completed"
         android:text="@string/room_done"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EditText1" />
+        app:layout_constraintTop_toBottomOf="@+id/EditText1"
+        app:layout_constraintVertical_bias="0.222"
+        tools:text="@android:color/background_light" />
 
 </android.support.constraint.ConstraintLayout>
