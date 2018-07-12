@@ -63,10 +63,13 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         //ScannerView.resumeCameraPreview(this);
     }
 
+    // call this method when users press the back button
     public void backPress(View view) {
+
         onBackPressed();
     }
 
+    // skip button, to edit if wanted, like maybe delayed display or something
     public void skip(View view) {
         Intent finalPage = new Intent(ScanActivity.this, RoomNumberAndNotes.class);
         startActivity(finalPage);
