@@ -1,10 +1,13 @@
 package com.kayheenjoyce.halp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.zxing.Result;
 
@@ -54,12 +57,39 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         // Log.v("tag", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
 
         ScanQR.tvresult.setText(rawResult.getText());
-        Intent finalPage = new Intent(ScanActivity.this, RoomNumberAndNotes.class);
-        startActivity(finalPage);
-        onBackPressed();
+
+        // results of the qr code scanning
+        String result = rawResult.getText();
+        String pw = "kjaoyyhceeeyne"; // actual password
+
+        // compare the 2 strings
+        boolean same = result.equals(pw);
+
+
+        if(same) { // if correct start the next activity
+            Intent finalPage = new Intent(ScanActivity.this, RoomNumberAndNotes.class);
+            startActivity(finalPage);
+        } else { // show the try again toast
+            showTryAgainToast();
+        }
+
+//        Intent finalPage = new Intent(ScanActivity.this, RoomNumberAndNotes.class);
+//        startActivity(finalPage);
+//        onBackPressed();
 
         // If you would like to resume scanning, call this method below:
         //ScannerView.resumeCameraPreview(this);
+    }
+
+    // Show this toast if the two texts do not match
+    public void showTryAgainToast() {
+        Context context = getApplicationContext();
+        String text = getString(R.string.qr_fail_toast);
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.BOTTOM, 0, 200);
+        toast.show();
     }
 
     // Back button calls this method

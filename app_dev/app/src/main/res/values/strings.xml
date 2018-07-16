@@ -32,6 +32,7 @@
 
     <string name="room_room">Room</string>
     <string name="room_write_doctor_notes">Write your doctor\'s notes here</string>
-    <string name="room_done">I\'m done</string>
+    <string name="room_done">I\'m done seeing the doctor</string>
+    <string name="qr_fail_toast">Please try again</string>
 
 </resources>
