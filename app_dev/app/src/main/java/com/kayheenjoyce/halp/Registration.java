@@ -1,11 +1,14 @@
 package com.kayheenjoyce.halp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,6 +57,7 @@ public class Registration extends AppCompatActivity {
         registrationOptions.add(findViewById(R.id.reg_overseas_button));
         registrationOptions.add(findViewById(R.id.reg_fever_button));
         registrationOptions.add(findViewById(R.id.reg_cough_button));
+        registrationOptions.add(findViewById(R.id.reg_others));
 
         checkedStates = new HashMap<>();
         // Initialise the check states to be false
@@ -79,6 +83,33 @@ public class Registration extends AppCompatActivity {
             checkedStates.put(buttonView, true);
             buttonView.setBackground(button_down);
         }
+    }
+    // For overseas button toggle will call this method
+    public void toggleButtonOverseas(View buttonView) {
+        boolean isChecked = checkedStates.get(buttonView);
+
+        if (isChecked) {
+            // Button is already selected, de-select it
+            checkedStates.replace(buttonView, false);
+            buttonView.setBackground(button_up);
+
+        } else {
+            // Button is not selected, select it
+            checkedStates.put(buttonView, true);
+            buttonView.setBackground(button_down);
+            Context context = getApplicationContext();
+            String text = getString(R.string.reg_toast_overseas);
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.BOTTOM, 0, 750);
+            toast.show();
+        }
+    }
+    // this method is called when the user fills in/clicks the others portion
+    public void othersMethod(View view){
+        // TODO
+        // not sure how to package this item?
     }
 
     /**

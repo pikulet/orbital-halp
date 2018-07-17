@@ -13,6 +13,7 @@
     <string name="reg_fever">Fever</string>
     <string name="reg_cough">Cough</string>
     <string name="reg_sign_in">NUS Sign-In</string>
+    <string name="reg_toast_overseas">Please state which country/countries in the text box below</string>
 
     <string name="wait_time">60</string>
     <string name="wait_your_turn">Your turn in</string>
@@ -29,10 +30,12 @@
     <string name="qr_scan_button">Scan QR Code</string>
     <string name="qr_location_of_code">Where is it?</string>
     <string name="qr_instructions">Please click the button below on arrival at UHC</string>
+    <string name="qr_fail_toast">Please try again</string>
 
     <string name="room_room">Room</string>
     <string name="room_write_doctor_notes">Write your doctor\'s notes here</string>
     <string name="room_done">I\'m done seeing the doctor</string>
-    <string name="qr_fail_toast">Please try again</string>
+
+
 
 </resources>

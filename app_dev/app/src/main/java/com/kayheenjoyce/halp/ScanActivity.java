@@ -20,13 +20,11 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     public void onCreate(Bundle state) {
         super.onCreate(state);
         overridePendingTransition(R.anim.enter, R.anim.exit);
-//        mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
-//        setContentView(mScannerView);                // Set the scanner view as the content view
         setContentView(R.layout.activity_scan);
 
         ViewGroup contentFrame = (ViewGroup) findViewById(R.id.content_frame);
-        mScannerView = new ZXingScannerView(this);
-        contentFrame.addView(mScannerView);
+        mScannerView = new ZXingScannerView(this); // programmatically initialise the scanner view
+        contentFrame.addView(mScannerView); // set the scanner view as the content view
     }
 
     @Override
@@ -73,10 +71,6 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
             showTryAgainToast();
         }
 
-//        Intent finalPage = new Intent(ScanActivity.this, RoomNumberAndNotes.class);
-//        startActivity(finalPage);
-//        onBackPressed();
-
         // If you would like to resume scanning, call this method below:
         //ScannerView.resumeCameraPreview(this);
     }
@@ -90,6 +84,10 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         Toast toast = Toast.makeText(context, text, duration);
         toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.BOTTOM, 0, 200);
         toast.show();
+
+        // recreating the activity, will call onsavedinstancestate() and onrestoreinstancestate() method
+        // not sure if applicable here
+        recreate();
     }
 
     // Back button calls this method
