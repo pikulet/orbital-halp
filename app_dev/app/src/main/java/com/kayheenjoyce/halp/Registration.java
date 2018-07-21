@@ -3,11 +3,13 @@ package com.kayheenjoyce.halp;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.CompoundButton;
+import android.view.Window;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,7 +20,6 @@ public class Registration extends AppCompatActivity {
 
     protected HashMap<View, Boolean> checkedStates; // Maps the views to their toggle states
     protected List<View> registrationOptions;       // A list of all registration options
-    // TODO: can add more narrowing bounds
 
     // Directly accessible drawables
     protected static Drawable button_up;            // Button up drawable
@@ -26,10 +27,13 @@ public class Registration extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         // Horizontal transition between activities
-        overridePendingTransition(R.anim.enter, R.anim.exit);
+
+
         setContentView(R.layout.activity_registration);
         initialiseFields();
     }
@@ -76,55 +80,75 @@ public class Registration extends AppCompatActivity {
 
         if (isChecked) {
             // Button is already selected, de-select it
-            checkedStates.replace(buttonView, false);
+            checkedStates.put(buttonView, false);
             buttonView.setBackground(button_up);
         } else {
             // Button is not selected, select it
             checkedStates.put(buttonView, true);
             buttonView.setBackground(button_down);
+
+            // If it's the overseas button, send a toast message
+            View overseasButton = findViewById(R.id.reg_overseas_button);
+            if (buttonView.equals(overseasButton)) {
+                showOverseasToast();
+            }
         }
     }
-    // For overseas button toggle will call this method
-    public void toggleButtonOverseas(View buttonView) {
-        boolean isChecked = checkedStates.get(buttonView);
 
-        if (isChecked) {
-            // Button is already selected, de-select it
-            checkedStates.replace(buttonView, false);
-            buttonView.setBackground(button_up);
+    /**
+     * Displays the toast notification that the reminder has been set.
+     */
+    private void showOverseasToast() {
+        Context context = getApplicationContext();
+        String text = getString(R.string.reg_toast_overseas);
 
-        } else {
-            // Button is not selected, select it
-            checkedStates.put(buttonView, true);
-            buttonView.setBackground(button_down);
-            Context context = getApplicationContext();
-            String text = getString(R.string.reg_toast_overseas);
-            int duration = Toast.LENGTH_SHORT;
+        int duration = Toast.LENGTH_SHORT;
 
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.BOTTOM, 0, 750);
-            toast.show();
-        }
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.BOTTOM, 0, 750);
+        toast.show();
     }
-    // this method is called when the user fills in/clicks the others portion
-    public void othersMethod(View view){
-        // TODO
-        // not sure how to package this item?
+
+    /**
+     * Creates a registration entry based on the information supplied by the user.
+     */
+    private RegistrationEntry createRegEntry() {
+        boolean hasFever = checkedStates.get(findViewById(R.id.reg_fever_button));
+        boolean hasCough = checkedStates.get(findViewById(R.id.reg_fever_button));
+        boolean wasOverseas = checkedStates.get(findViewById(R.id.reg_fever_button));
+
+        EditText additionalNotesVIew = (EditText) findViewById(R.id.reg_others);
+        String additionalNotes = additionalNotesVIew.getText().toString();
+
+        return new RegistrationEntry(hasFever, hasCough, wasOverseas, additionalNotes);
+    }
+
+    /**
+     * Opens a browser view for the user to sign in to OPEN ID and verify their registration
+     */
+    private void getAuthenticationToken() {
+        String requestSite = "https://openid.nus.edu.sg/auth/index/?openid.ns=http://specs.openid.net/auth/2.0&openid.ns.ax=http://openid.net/srv/ax/1.0&openid.ax.mode=fetch_request&openid.ax.required=email,firstname,lastname&openid.ax.type.email=http://axschema.org/contact/email&openid.ax.type.firstname=http://axschema.org/namePerson/first&openid.ax.type.lastname=http://axschema.org/namePerson/last&openid.mode=checkid_setup&openid.ns.sreg=http://openid.net/extensions/sreg/1.1&openid.sreg.required=email,firstname,lastname&openid.sreg.optional=nickname&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.realm=halp://complete&openid.return_to=halp://complete";
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(requestSite));
+        startActivity(browserIntent);
     }
 
     /**
      * Lets the user sign in to NUS OPENID, and sends a registration to UHC.
-     * In return, the clinic will return a RegistrationEntry object.
+     * In return, the clinic will return a com.kayheenjoyce.halp.Registration.RegistrationEntry object.
      */
     public void sendRegistration(View buttonView) {
-        // TODO
+        // Create a new registration object using the states of the buttons and the "Others" section
+        RegistrationEntry regEntry = createRegEntry();
 
-        // User keys in NUS authentication details and confirms sign-in
+        // Redirect user to retrieve NUS Open ID Authentication Token
+        getAuthenticationToken();
 
-        // Clinic received a registration and returns the consultation details.
+        // Push registration to clinic
 
         // For now, this will pretend that the registration is done.
-        Intent registerDone = new Intent(this, WaitingClinic.class);
+        /*Intent registerDone = new Intent(this, WaitingClinic.class);
         startActivity(registerDone);
+        */
     }
+
 }

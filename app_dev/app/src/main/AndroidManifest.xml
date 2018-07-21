@@ -3,6 +3,7 @@
     package="com.kayheenjoyce.halp">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -15,14 +16,24 @@
             android:label = "@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Registration"
-            android:label = "Registration"/>
+            android:label = "Registration">
+
+        </activity>
         <activity android:name=".WaitingClinic"
-            android:label = "Waiting time for appointment"/>
+            android:label = "Waiting time for appointment">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <!-- Accepts URIs that begin with "halp://complete” -->
+            <data android:scheme="halp"
+                android:host="complete" />
+        </intent-filter>
+        </activity>
         <activity android:name=".ScanQR"
             android:label = "Scan your QR code"/>
         <activity android:name=".ScanActivity"

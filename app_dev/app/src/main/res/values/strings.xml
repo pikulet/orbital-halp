@@ -13,7 +13,7 @@
     <string name="reg_fever">Fever</string>
     <string name="reg_cough">Cough</string>
     <string name="reg_sign_in">NUS Sign-In</string>
-    <string name="reg_toast_overseas">Please state which country/countries in the text box below</string>
+    <string name="reg_toast_overseas">Please state the country(-ies) below</string>
 
     <string name="wait_time">60</string>
     <string name="wait_your_turn">Your turn in</string>

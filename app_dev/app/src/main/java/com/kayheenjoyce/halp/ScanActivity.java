@@ -58,7 +58,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
         // results of the qr code scanning
         String result = rawResult.getText();
-        String pw = "kjaoyyhceeeyne"; // actual password
+        String pw = "33C07E7CBA240011B526A0573EDD4927A8971D95513D58C005F9F3295ED9E71E"; // hash of actual password kjaoyyhceeeyne
 
         // compare the 2 strings
         boolean same = result.equals(pw);

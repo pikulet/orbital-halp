@@ -29,10 +29,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initialiseFields();
-        checkCamera(); //check if camera allowed
+        checkPermissions(); // Checks if camera permission is granted
     }
 
-    public void checkCamera() {
+    /**
+     * Checks if the user has granted this app permissions to use the camera
+     * If not, ask for it.
+     */
+    public void checkPermissions() {
         if (checkSelfPermission(Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.CAMERA},
@@ -117,10 +121,15 @@ public class MainActivity extends AppCompatActivity {
         Random rand = new Random();
         int randomWaitingTime = rand.nextInt(16) + 45;
         MainActivity.estimatedWaitingTime = randomWaitingTime;
+        String waitTimeValue = String.valueOf(MainActivity.estimatedWaitingTime);
+
+        if(!clinicIsOpen) {
+            waitTimeValue = "-";
+        }
 
         // Updates the displayed text
         TextView tView = findViewById(R.id.main_estWaitTime);
-        tView.setText(String.valueOf(MainActivity.estimatedWaitingTime));
+        tView.setText(waitTimeValue);
     }
 
     /**
