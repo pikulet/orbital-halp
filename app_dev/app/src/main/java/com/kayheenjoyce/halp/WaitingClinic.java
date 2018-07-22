@@ -13,16 +13,13 @@ import android.widget.ArrayAdapter;
 
 import android.widget.Toast;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class WaitingClinic extends AppCompatActivity {
 
-    // The waiting countdown time, rounded up to the nearest minute
-    protected int countDown = 60;
-
-    // Whether a reminder has been set
-    protected boolean reminderSet;
+    private RegistrationEntry entry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +34,13 @@ public class WaitingClinic extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // Retrieve the RegistrationEntry
+        /*
 
-        // Retrieve the time of the consultation from the registration entry
-        // TODO
-        //
-        // Recalculate and convert the consultation time to a waiting time
-        // TODO
+        // Retrieve the RegistrationEntry
+        this.entry = getRegEntry();
+
+        // Update the waiting time countdown
+        updateWaitingTime();
 
         // Constantly reminds user to be there at clinic 15 minutes before actual time
         showComeEarlyToast();
@@ -57,21 +54,51 @@ public class WaitingClinic extends AppCompatActivity {
 
             @Override
             public void run() {
-                if (!reminderSet) {
+                if (!wasReminderSet()) {
                     showReminderToast();
                 }
             }
         }, 2000);
 
+        */
+
+    }
+
+    /**
+     * Retrieves the registration entry from local storage.
+     */
+    private String getRegEntry() {
+        FileInputStream inputStream;
+
+        try {
+
+            // Opens the file
+            inputStream = openFileInput("currentRegEntry");
+            int inputStreamLength = inputStream.available();
+            int[] fileContents = new int[inputStreamLength];
+
+            // Reads from the file
+            for (int index = 0; index < inputStreamLength; index ++) {
+                fileContents[index] = inputStream.read();
+            }
+
+            // Convert result to String
+            String result = java.util.Arrays.toString(fileContents);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-
-        // Horizontal transition between activities
-        overridePendingTransition(R.anim.reverse_enter, R.anim.reverse_exit);
+        // USER CAN NO LONGER GO BACK
     }
+
+    /**
+     * Calculates the countdown time
+     */
 
     /**
      * Displays the toast notification to come early.
@@ -157,7 +184,7 @@ public class WaitingClinic extends AppCompatActivity {
      */
     private ArrayAdapter<Integer> calculateReminderTimes() {
 
-        int countDown = this.countDown;
+        int countDown = getCountDownTime();
 
         // Add timings to the arraylist in intervals of five minutes, up to but not including the
         // time left on the countdown
