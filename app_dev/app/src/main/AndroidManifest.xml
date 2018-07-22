@@ -3,7 +3,7 @@
     package="com.kayheenjoyce.halp">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,34 +12,44 @@
         android:roundIcon="@mipmap/ic_clinic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:label = "@string/app_name">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registration"
-            android:label = "Registration">
+        <activity
+            android:name=".Registration"
+            android:label="Registration"/>
+        <activity
+            android:name=".SendingReg"
+            android:label="Processing...">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "halp://complete” -->
+                <data
+                    android:host="complete"
+                    android:scheme="halp" />
+            </intent-filter>
         </activity>
-        <activity android:name=".WaitingClinic"
-            android:label = "Waiting time for appointment">
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <!-- Accepts URIs that begin with "halp://complete” -->
-            <data android:scheme="halp"
-                android:host="complete" />
-        </intent-filter>
-        </activity>
-        <activity android:name=".ScanQR"
-            android:label = "Scan your QR code"/>
-        <activity android:name=".ScanActivity"
-            android:label = "Scan your QR code"/>
-        <activity android:name=".RoomNumberAndNotes"
-            android:label = "Appointment Information"></activity>
+        <activity
+            android:name=".WaitingClinic"
+            android:label="Waiting time for appointment"/>
+        <activity
+            android:name=".ScanQR"
+            android:label="Scan your QR code" />
+        <activity
+            android:name=".ScanActivity"
+            android:label="Scan your QR code" />
+        <activity
+            android:name=".RoomNumberAndNotes"
+            android:label="Appointment Information" />
     </application>
 
 </manifest>

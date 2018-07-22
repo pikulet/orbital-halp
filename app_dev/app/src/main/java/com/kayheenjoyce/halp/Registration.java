@@ -12,7 +12,11 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,7 +36,7 @@ public class Registration extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         // Horizontal transition between activities
-
+        overridePendingTransition(R.anim.enter, R.anim.exit);
 
         setContentView(R.layout.activity_registration);
         initialiseFields();
@@ -120,7 +124,27 @@ public class Registration extends AppCompatActivity {
         EditText additionalNotesVIew = (EditText) findViewById(R.id.reg_others);
         String additionalNotes = additionalNotesVIew.getText().toString();
 
-        return new RegistrationEntry(hasFever, hasCough, wasOverseas, additionalNotes);
+        Calendar currentTime = Calendar.getInstance();
+
+        return new RegistrationEntry(currentTime, hasFever, hasCough, wasOverseas, additionalNotes);
+    }
+
+    /**
+     * Adds the registration entry to the local storage.
+     * @param entry The RegistrationEntry created by the user, without the OPEN ID Authentication Token
+     */
+    private void addEntryToStorage(RegistrationEntry entry) {
+        String filename = "currentRegEntry";
+        String fileContents = entry.toString();
+        FileOutputStream outputStream;
+
+        try {
+            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+            outputStream.write(fileContents.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -140,15 +164,11 @@ public class Registration extends AppCompatActivity {
         // Create a new registration object using the states of the buttons and the "Others" section
         RegistrationEntry regEntry = createRegEntry();
 
+        // Save entry to local storage
+        addEntryToStorage(regEntry);
+
         // Redirect user to retrieve NUS Open ID Authentication Token
         getAuthenticationToken();
-
-        // Push registration to clinic
-
-        // For now, this will pretend that the registration is done.
-        /*Intent registerDone = new Intent(this, WaitingClinic.class);
-        startActivity(registerDone);
-        */
     }
 
 }

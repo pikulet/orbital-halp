@@ -37,7 +37,9 @@ public class WaitingClinic extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // Retrieve the time of the consultation from local storage.
+        // Retrieve the RegistrationEntry
+
+        // Retrieve the time of the consultation from the registration entry
         // TODO
         //
         // Recalculate and convert the consultation time to a waiting time
@@ -78,7 +80,7 @@ public class WaitingClinic extends AppCompatActivity {
     private void showComeEarlyToast() {
         Context context = getApplicationContext();
         String text = getString(R.string.wait_toast_come_early);
-        int duration = Toast.LENGTH_LONG;
+        int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.BOTTOM, 0, 100);
@@ -92,7 +94,7 @@ public class WaitingClinic extends AppCompatActivity {
     private void showReminderToast() {
         Context context = getApplicationContext();
         String text = getString(R.string.wait_toast_notification);
-        int duration = Toast.LENGTH_LONG;
+        int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.setGravity(Gravity.RIGHT | Gravity.TOP, 36, 36);
@@ -166,7 +168,7 @@ public class WaitingClinic extends AppCompatActivity {
 
         // Create an array adapter to be converted to the Alert Dialog
         ArrayAdapter<Integer> timingsAdapter
-                = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, timings);
+                = new ArrayAdapter<>(this, R.layout.wait_reminder_basic_text_layout, timings);
 
         return timingsAdapter;
     }
