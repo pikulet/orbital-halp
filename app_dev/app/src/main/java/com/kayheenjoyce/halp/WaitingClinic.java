@@ -89,6 +89,7 @@ public class WaitingClinic extends AppCompatActivity {
             e.printStackTrace();
             return "";
         }
+        return "";
     }
 
     @Override
@@ -152,7 +153,7 @@ public class WaitingClinic extends AppCompatActivity {
 
         // Future expansion: modify reminder timings
 
-        if (!reminderSet) {
+//        if (!reminderSet) { // add this back when you are done
             // Creates the drop-down timing list based on the countdown
             final ArrayAdapter<Integer> timingsAdapter = calculateReminderTimes();
 
@@ -175,7 +176,7 @@ public class WaitingClinic extends AppCompatActivity {
                     .create();
 
             alertDialog.show();
-        }
+//        }
     }
 
     /**
@@ -184,7 +185,8 @@ public class WaitingClinic extends AppCompatActivity {
      */
     private ArrayAdapter<Integer> calculateReminderTimes() {
 
-        int countDown = getCountDownTime();
+//        int countDown = getCountDownTime();
+        int countDown = 60; // temporary placeholder
 
         // Add timings to the arraylist in intervals of five minutes, up to but not including the
         // time left on the countdown
@@ -221,7 +223,7 @@ public class WaitingClinic extends AppCompatActivity {
      * Proceeds to scan the QR code.
      */
     public void reachedClinic(View view) {
-        Intent reachedClinic = new Intent(this, ScanQR.class);
+        Intent reachedClinic = new Intent(this, ScanActivity.class);
         startActivity(reachedClinic);
     }
 

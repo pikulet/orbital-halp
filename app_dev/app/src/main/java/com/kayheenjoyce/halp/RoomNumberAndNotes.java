@@ -1,5 +1,6 @@
 package com.kayheenjoyce.halp;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -90,8 +91,16 @@ public class RoomNumberAndNotes extends AppCompatActivity {
 
     // this button clears the notes taken for the doctor, so that the next time
     // the user goes to see the doctor, the notes will be clear again.
+    // method also closes the app once the button is clicked
     public void completed(View view) {
+
         this.deleteFile("Note1.txt");
+
+        // this block of code results in the app being closed after the im done button is clicked
+        Intent CloseInt = new Intent(getApplicationContext(), MainActivity.class);
+        CloseInt.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        CloseInt.putExtra("CloseApp", true);
+        startActivity(CloseInt);
     }
 
     @Override

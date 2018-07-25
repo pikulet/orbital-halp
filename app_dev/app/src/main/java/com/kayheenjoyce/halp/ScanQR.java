@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
+// this class not in used anymore, leaving it here for debugging purposes if needed
 public class ScanQR extends AppCompatActivity {
 
     public static TextView tvresult;

@@ -28,8 +28,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initialiseFields();
+        // this is to close the app
+        if(getIntent().getExtras() != null
+                && getIntent().getExtras().getBoolean("CloseApp", false)) {
+            finish();
+        }
+
+
+        initialiseFields(); // setup the first page
         checkPermissions(); // Checks if camera permission is granted
+
     }
 
     /**
