@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-
         initialiseFields(); // setup the first page
     }
 

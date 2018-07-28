@@ -25,6 +25,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Random;
 
 public class WaitingClinic extends AppCompatActivity {
 
@@ -121,6 +122,13 @@ public class WaitingClinic extends AppCompatActivity {
     }
 
     /**
+     * Re-calculates the countdown timer left.
+     */
+    private int getCountDownTime() {
+        return new Random().nextInt(30) + 30;
+    }
+
+    /**
      * Checks if a phone alarm has been set.
      */
     private boolean wasReminderSet() {
@@ -211,8 +219,7 @@ public class WaitingClinic extends AppCompatActivity {
      */
     private ArrayAdapter<Integer> calculateReminderTimes() {
 
-//        int countDown = getCountDownTime();
-        int countDown = 60; // temporary placeholder
+        int countDown = getCountDownTime();
 
         // Add timings to the arraylist in intervals of five minutes, up to but not including the
         // time left on the countdown
@@ -265,7 +272,6 @@ public class WaitingClinic extends AppCompatActivity {
      * Proceeds to scan the QR code.
      */
     public void reachedClinic(View view) {
-
         checkCameraPermissions(); // checks if camera permissions have been granted
 
         Intent reachedClinic = new Intent(this, ScanActivity.class);
