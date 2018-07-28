@@ -24,25 +24,11 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         overridePendingTransition(R.anim.enter, R.anim.exit);
         setContentView(R.layout.activity_scan);
 
-        checkCameraPermissions(); // checks if camera permissions have been granted
-
         ViewGroup contentFrame = (ViewGroup) findViewById(R.id.content_frame);
         mScannerView = new ZXingScannerView(this); // programmatically initialise the scanner view
         contentFrame.addView(mScannerView); // set the scanner view as the content view
     }
 
-
-    /**
-     * Checks if the user has granted this app permissions to use the camera
-     * If not, ask for it.
-     */
-    private void checkCameraPermissions() {
-        if (checkSelfPermission(Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.CAMERA},
-                    100);
-        }
-    }
 
     @Override
     public void onResume() {

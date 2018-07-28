@@ -26,6 +26,7 @@
     <string name="wait_reminder_set_before">Will remind you</string>
     <string name="wait_reminder_set_after">mins before consult</string>
     <string name="wait_reminder_confirm">OK</string>
+    <string name="wait_reminder_alarm_msg">UHC consultation</string>
 
     <string name="qr_scan_button">Scan QR Code</string>
     <string name="qr_location_of_code">Where is it?</string>
@@ -34,7 +35,6 @@
 
     <string name="room_room">Room</string>
     <string name="room_write_doctor_notes">Write your doctor\'s notes here</string>
-    <string name="room_done">I\'m done seeing the doctor</string>
-
+    <string name="room_done">I\'m done \:\)</string>
 
 </resources>

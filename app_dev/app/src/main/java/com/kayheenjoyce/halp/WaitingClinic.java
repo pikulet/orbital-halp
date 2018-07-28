@@ -1,11 +1,14 @@
 package com.kayheenjoyce.halp;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.AlarmClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -248,7 +251,11 @@ public class WaitingClinic extends AppCompatActivity {
      * Sets a phone alarm based on the time selected.
      */
     private void setAlarm(Calendar targetCal) {
+
+        //checkAlarmPermissions();
+
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+        intent.putExtra(AlarmClock.EXTRA_MESSAGE, R.string.wait_reminder_alarm_msg);
         intent.putExtra(AlarmClock.EXTRA_HOUR, /*targetCal.get(Calendar.HOUR)*/ 10);
         intent.putExtra(AlarmClock.EXTRA_MINUTES, /* targetCal.get(Calendar.MINUTE)*/ 20);
         startActivity(intent);
@@ -258,8 +265,23 @@ public class WaitingClinic extends AppCompatActivity {
      * Proceeds to scan the QR code.
      */
     public void reachedClinic(View view) {
+
+        checkCameraPermissions(); // checks if camera permissions have been granted
+
         Intent reachedClinic = new Intent(this, ScanActivity.class);
         startActivity(reachedClinic);
+    }
+
+    /**
+     * Checks if the user has granted this app permissions to use the camera
+     * If not, ask for it.
+     */
+    private void checkCameraPermissions() {
+        if (checkSelfPermission(Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA},
+                    100);
+        }
     }
 
 }
