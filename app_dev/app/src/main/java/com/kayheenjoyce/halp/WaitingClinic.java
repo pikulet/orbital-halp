@@ -17,19 +17,29 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Random;
+import java.util.Timer;
 
 public class WaitingClinic extends AppCompatActivity {
 
     private JSONObject entry;
     private boolean reminderSet = false;
+    private Calendar consultTime;
+
+    /** Countdown handler */
+    Handler h = new Handler();
+    int delay = 60*1000; //1 second=1000 milisecond, 60*1000=60seconds
+    Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +48,29 @@ public class WaitingClinic extends AppCompatActivity {
         // Horizontal transition between activities
         overridePendingTransition(R.anim.enter, R.anim.exit);
         setContentView(R.layout.activity_waiting_clinic);
+
+        initialiseTestMode();
+    }
+
+    /**
+     * Initialises variables for testing purposes.
+     */
+    private void initialiseTestMode() {
+        int testWaitTime = getRandomWaitingTime();
+
+        // Generate the test consultation time
+        Calendar currentTime = Calendar.getInstance();
+        currentTime.add(Calendar.MINUTE, testWaitTime);
+        this.consultTime = currentTime;
+
+        updateCountdownTime();
+    }
+
+    /**
+     * Generates a random waiting time for testing purposes.
+     */
+    private int getRandomWaitingTime() {
+        return new Random().nextInt(16) + 20
     }
 
     @Override
@@ -70,6 +103,43 @@ public class WaitingClinic extends AppCompatActivity {
             }
         }, 2000);
 
+
+
+        h.postDelayed(runnable = new Runnable() {
+            public void run() {
+                updateCountdownTime();
+                h.postDelayed(runnable, delay);
+            }
+        }, delay);
+
+    }
+
+    @Override
+    protected void onPause() {
+        h.removeCallbacks(runnable); //stop handler when activity not visible
+        super.onPause();
+    }
+
+    /**
+     * Updates the displayed countdown value.
+     */
+    private void updateCountdownTime() {
+        int countDown = getCountdownValue();
+
+        TextView countdownDisplay = (TextView) findViewById(R.id.wait_time);
+        countdownDisplay.setText(countDown);
+    }
+
+    /**
+     * Re-calculates the countdown value.
+     */
+    private int getCountdownValue() {
+        long miliSecondForConsult = this.consultTime.getTimeInMillis();
+        long miliSecondForCurrentTime = Calendar.getInstance().getTimeInMillis();
+
+        long diffInMilis = miliSecondForConsult - miliSecondForCurrentTime;
+
+        return (int) diffInMilis/ (60 * 1000);
     }
 
     /**
