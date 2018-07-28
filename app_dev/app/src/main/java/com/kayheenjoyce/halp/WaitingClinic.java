@@ -37,9 +37,9 @@ public class WaitingClinic extends AppCompatActivity {
     private Calendar consultTime;
 
     /** Countdown handler */
-    Handler h = new Handler();
-    int delay = 60*1000; //1 second=1000 milisecond, 60*1000=60seconds
-    Runnable runnable;
+    private static Handler h;
+    private static int delay;
+    private static Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +49,18 @@ public class WaitingClinic extends AppCompatActivity {
         overridePendingTransition(R.anim.enter, R.anim.exit);
         setContentView(R.layout.activity_waiting_clinic);
 
-        initialiseTestMode();
+        //initialiseFields();
+        //initialiseTestMode();
     }
+
+    /**
+     * Initialises fields for this page.
+     * Current fields initialised: Handler.
+     */
+     private void initialiseFields() {
+         WaitingClinic.h = new Handler();
+         WaitingClinic.delay = 60*1000; //1 second=1000 milisecond, 60*1000=60seconds
+     }
 
     /**
      * Initialises variables for testing purposes.
@@ -70,7 +80,7 @@ public class WaitingClinic extends AppCompatActivity {
      * Generates a random waiting time for testing purposes.
      */
     private int getRandomWaitingTime() {
-        return new Random().nextInt(16) + 20
+        return new Random().nextInt(16) + 20;
     }
 
     @Override
@@ -86,7 +96,7 @@ public class WaitingClinic extends AppCompatActivity {
         this.entry = getRegEntry();
 
         // Update the waiting time countdown
-        updateWaitingTime();
+        updateCountdownTime();
 
         // Constantly reminds user to be there at clinic 15 minutes before actual time
         showComeEarlyToast();
@@ -103,21 +113,6 @@ public class WaitingClinic extends AppCompatActivity {
             }
         }, 2000);
 
-
-
-        h.postDelayed(runnable = new Runnable() {
-            public void run() {
-                updateCountdownTime();
-                h.postDelayed(runnable, delay);
-            }
-        }, delay);
-
-    }
-
-    @Override
-    protected void onPause() {
-        h.removeCallbacks(runnable); //stop handler when activity not visible
-        super.onPause();
     }
 
     /**
@@ -181,13 +176,6 @@ public class WaitingClinic extends AppCompatActivity {
             e.printStackTrace();
             return new JSONObject();
         }
-    }
-
-    /**
-     * Updates the displayed waiting time.
-     */
-    private void updateWaitingTime() {
-
     }
 
     /**
