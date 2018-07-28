@@ -41,7 +41,13 @@ public class RegistrationEntry {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
 
+    /**
+     * Constructor to modify a com.kayheenjoyce.halp.RegistrationEntry
+     */
+    public RegistrationEntry(JSONObject entry) {
+        this.entry = entry;
     }
 
     /** Getter for the studentID. */

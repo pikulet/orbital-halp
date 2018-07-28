@@ -1,9 +1,12 @@
 package com.kayheenjoyce.halp;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.provider.AlarmClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,13 +16,17 @@ import android.widget.ArrayAdapter;
 
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class WaitingClinic extends AppCompatActivity {
 
-    private RegistrationEntry entry;
+    private JSONObject entry;
+    private boolean reminderSet = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +38,13 @@ public class WaitingClinic extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        // User can no longer go back in the app
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-
-        /*
 
         // Retrieve the RegistrationEntry
         this.entry = getRegEntry();
@@ -44,9 +54,6 @@ public class WaitingClinic extends AppCompatActivity {
 
         // Constantly reminds user to be there at clinic 15 minutes before actual time
         showComeEarlyToast();
-
-        // Check from local storage if the reminder has been set
-        // TODO
 
         // Reminds user to set notification if not set already, the handler staggers the pop up
         // so they don't both appear at the same time, making screen less cluttered
@@ -60,15 +67,14 @@ public class WaitingClinic extends AppCompatActivity {
             }
         }, 2000);
 
-        */
-
     }
 
     /**
      * Retrieves the registration entry from local storage.
      */
-    private String getRegEntry() {
+    private JSONObject getRegEntry() {
         FileInputStream inputStream;
+        String result;
 
         try {
 
@@ -83,23 +89,40 @@ public class WaitingClinic extends AppCompatActivity {
             }
 
             // Convert result to String
-            String result = java.util.Arrays.toString(fileContents);
+            result = java.util.Arrays.toString(fileContents);
 
         } catch (Exception e) {
             e.printStackTrace();
-            return "";
+            result = "";
         }
-        return "";
-    }
-
-    @Override
-    public void onBackPressed() {
-        // USER CAN NO LONGER GO BACK
+        return parseStorageFileToJSON(result);
     }
 
     /**
-     * Calculates the countdown time
+     * Converts the storage string to a JSON entry.
      */
+    private JSONObject parseStorageFileToJSON(String storageEntry) {
+        try {
+            return new JSONObject(storageEntry);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONObject();
+        }
+    }
+
+    /**
+     * Updates the displayed waiting time.
+     */
+    private void updateWaitingTime() {
+
+    }
+
+    /**
+     * Checks if a phone alarm has been set.
+     */
+    private boolean wasReminderSet() {
+        return this.reminderSet;
+    }
 
     /**
      * Displays the toast notification to come early.
@@ -153,7 +176,7 @@ public class WaitingClinic extends AppCompatActivity {
 
         // Future expansion: modify reminder timings
 
-//        if (!reminderSet) { // add this back when you are done
+        if (!wasReminderSet()) {
             // Creates the drop-down timing list based on the countdown
             final ArrayAdapter<Integer> timingsAdapter = calculateReminderTimes();
 
@@ -176,7 +199,7 @@ public class WaitingClinic extends AppCompatActivity {
                     .create();
 
             alertDialog.show();
-//        }
+        }
     }
 
     /**
@@ -213,10 +236,22 @@ public class WaitingClinic extends AppCompatActivity {
         currentTime.add(GregorianCalendar.MINUTE, minutesSelected);
 
         // Set a phone notification based on the minutes selected and the current time.
-        // TODO
+        //setAlarm(currentTime);
 
         // Inform the user that the reminder has been set
         showReminderSetToast(minutesSelected);
+
+        this.reminderSet = true;
+    }
+
+    /**
+     * Sets a phone alarm based on the time selected.
+     */
+    private void setAlarm(Calendar targetCal) {
+        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+        intent.putExtra(AlarmClock.EXTRA_HOUR, /*targetCal.get(Calendar.HOUR)*/ 10);
+        intent.putExtra(AlarmClock.EXTRA_MINUTES, /* targetCal.get(Calendar.MINUTE)*/ 20);
+        startActivity(intent);
     }
 
     /**

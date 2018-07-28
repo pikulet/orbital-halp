@@ -36,20 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         initialiseFields(); // setup the first page
-        checkPermissions(); // Checks if camera permission is granted
-
-    }
-
-    /**
-     * Checks if the user has granted this app permissions to use the camera
-     * If not, ask for it.
-     */
-    public void checkPermissions() {
-        if (checkSelfPermission(Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.CAMERA},
-                    100);
-        }
     }
 
     @Override

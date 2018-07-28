@@ -1,6 +1,8 @@
 package com.kayheenjoyce.halp;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 public class ScanQR extends AppCompatActivity {
 
     public static TextView tvresult;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +23,7 @@ public class ScanQR extends AppCompatActivity {
 
         // stores the qr return value for debugging
         tvresult = (TextView) findViewById(R.id.instructions);
+
         // the actual scan qr code button
         Button btn = (Button) findViewById(R.id.scanQR);
 
@@ -30,8 +34,9 @@ public class ScanQR extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
+
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
