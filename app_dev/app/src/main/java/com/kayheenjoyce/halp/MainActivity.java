@@ -14,6 +14,9 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Internal storage filename
+    public static String fileName = "currentRegEntry";
+
     // The current opening status of the clinic
     private static boolean clinicIsOpen;
     private static String CLINIC_OPEN;      // Directly accessible strings

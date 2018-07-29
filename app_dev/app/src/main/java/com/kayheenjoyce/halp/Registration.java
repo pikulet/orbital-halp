@@ -134,7 +134,7 @@ public class Registration extends AppCompatActivity {
      * @param entry The RegistrationEntry created by the user, without the OPEN ID Authentication Token
      */
     private void addEntryToStorage(RegistrationEntry entry) {
-        String filename = "currentRegEntry";
+        String filename = MainActivity.fileName;
         String fileContents = entry.toString();
         FileOutputStream outputStream;
 

@@ -95,6 +95,7 @@ public class RoomNumberAndNotes extends AppCompatActivity {
     public void completed(View view) {
 
         this.deleteFile("Note1.txt");
+        this.deleteFile(MainActivity.fileName);
 
         // this block of code results in the app being closed after the im done button is clicked
         Intent CloseInt = new Intent(getApplicationContext(), MainActivity.class);

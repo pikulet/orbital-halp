@@ -1,15 +1,14 @@
 package com.kayheenjoyce.halp;
 
 import android.Manifest;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.provider.AlarmClock;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -38,25 +38,17 @@ public class WaitingClinic extends AppCompatActivity {
 
         // Horizontal transition between activities
         overridePendingTransition(R.anim.enter, R.anim.exit);
+
         setContentView(R.layout.activity_waiting_clinic);
-    }
-
-    @Override
-    public void onBackPressed() {
-        // User can no longer go back in the app
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
 
         // Retrieve the RegistrationEntry
         this.entry = getRegEntry();
 
-        // Update the waiting time countdown
-        updateWaitingTime();
+        // Set countdown value
+        TextView waitCountdownTime = findViewById(R.id.wait_time);
+        waitCountdownTime.setText(String.valueOf(getCountDownTime()));
 
-        // Constantly reminds user to be there at clinic 15 minutes before actual time
+        // Reminds user to be there at clinic 15 minutes before actual time
         showComeEarlyToast();
 
         // Reminds user to set notification if not set already, the handler staggers the pop up
@@ -69,8 +61,21 @@ public class WaitingClinic extends AppCompatActivity {
                     showReminderToast();
                 }
             }
-        }, 2000);
+        }, 500);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        // User can no longer go back in the app
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Update the waiting time countdown
+        updateWaitingTime();
     }
 
     /**
@@ -115,10 +120,44 @@ public class WaitingClinic extends AppCompatActivity {
     }
 
     /**
-     * Updates the displayed waiting time.
+     * Updates the waiting time every 30 seconds.
      */
     private void updateWaitingTime() {
+        final Handler handler = new Handler();
+        final int delay = 2500; //milliseconds
 
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                updateWaitingTimeText();
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
+    }
+
+    /**
+     * Updates the displayed waiting time.
+     */
+    private void updateWaitingTimeText() {
+        TextView waitTimeDisplay = findViewById(R.id.wait_time);
+
+        String currentValueString = String.valueOf(waitTimeDisplay.getText());
+        Integer currentValueInt = Integer.parseInt(currentValueString);
+
+        Integer newValueInt = currentValueInt - 1;
+        String newTime = String.valueOf(newValueInt);
+
+        waitTimeDisplay.setText(newTime);
+
+        int textColour = Color.BLACK;
+
+        // Colour checking
+        if (newValueInt <= 45 && newValueInt > 20) {
+            textColour = ContextCompat.getColor(this, R.color.colorSecondaryMedium);
+        } else if (newValueInt <= 20) {
+            textColour = ContextCompat.getColor(this, R.color.colorSecondaryDark);
+        }
+
+        waitTimeDisplay.setTextColor(textColour);
     }
 
     /**
@@ -172,7 +211,7 @@ public class WaitingClinic extends AppCompatActivity {
                 + reminderMinutes.toString() + " "
                 + getString(R.string.wait_reminder_set_after);
 
-        int duration = Toast.LENGTH_LONG;
+        int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.BOTTOM, 0, 100);
@@ -184,8 +223,6 @@ public class WaitingClinic extends AppCompatActivity {
      * Alarm is set for COUNTDOWN TIME - X minutes later.
      */
     public void setReminder(View view) {
-
-        // Future expansion: modify reminder timings
 
         if (!wasReminderSet()) {
             // Creates the drop-down timing list based on the countdown
@@ -202,8 +239,8 @@ public class WaitingClinic extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int itemSelected) {
                             int reminderMinutes = timingsAdapter.getItem(itemSelected);
-                            createNotificationIn(reminderMinutes);
                             dialog.dismiss();
+                            setAlarmIn(reminderMinutes);
                         }
 
                     })
@@ -239,7 +276,16 @@ public class WaitingClinic extends AppCompatActivity {
      * User presses the timing on the alert dialog, setting an alarm.
      * @param minutesSelected User wants to be reminder x minutes before their consultation
      */
-    private void createNotificationIn(int minutesSelected) {
+    private void setAlarmIn(int minutesSelected) {
+
+        /*
+        // Get alarm permission
+        if (checkSelfPermission(Manifest.permission.SET_ALARM)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.SET_ALARM},
+                    105);
+            checkAlarmPermissions();
+        }
 
         // Calculates the time that the notification should be set
         GregorianCalendar currentTime = (GregorianCalendar)GregorianCalendar.getInstance();
@@ -248,18 +294,24 @@ public class WaitingClinic extends AppCompatActivity {
         // Set a phone notification based on the minutes selected and the current time.
         //setAlarm(currentTime);
 
+        */
+
         // Inform the user that the reminder has been set
         showReminderSetToast(minutesSelected);
+    }
 
-        this.reminderSet = true;
+    /**
+     * Proceeds to another activity to get the set alarm permission for the user.
+     */
+    private void getAlarmPermission() {
+        Intent alarmPermission = new Intent(this, AlarmPermissions.class);
+        startActivity(alarmPermission);
     }
 
     /**
      * Sets a phone alarm based on the time selected.
      */
     private void setAlarm(Calendar targetCal) {
-
-        //checkAlarmPermissions();
 
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
         intent.putExtra(AlarmClock.EXTRA_MESSAGE, R.string.wait_reminder_alarm_msg);
@@ -272,9 +324,7 @@ public class WaitingClinic extends AppCompatActivity {
      * Proceeds to scan the QR code.
      */
     public void reachedClinic(View view) {
-        checkCameraPermissions(); // checks if camera permissions have been granted
-
-        Intent reachedClinic = new Intent(this, ScanActivity.class);
+        Intent reachedClinic = new Intent(this, CameraPermissionsEmpty.class);
         startActivity(reachedClinic);
     }
 
@@ -282,11 +332,12 @@ public class WaitingClinic extends AppCompatActivity {
      * Checks if the user has granted this app permissions to use the camera
      * If not, ask for it.
      */
-    private void checkCameraPermissions() {
-        if (checkSelfPermission(Manifest.permission.CAMERA)
+    private void checkAlarmPermissions() {
+        if (checkSelfPermission(Manifest.permission.SET_ALARM)
                 != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.CAMERA},
+            requestPermissions(new String[]{Manifest.permission.SET_ALARM},
                     100);
+            checkAlarmPermissions();
         }
     }
 

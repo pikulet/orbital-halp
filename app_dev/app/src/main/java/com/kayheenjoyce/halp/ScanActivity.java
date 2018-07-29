@@ -43,10 +43,11 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-
         // Horizontal transition between activities
         overridePendingTransition(R.anim.reverse_enter, R.anim.reverse_exit);
+
+        Intent undoReach = new Intent(this, WaitingClinic.class);
+        startActivity(undoReach);
     }
 
     @Override

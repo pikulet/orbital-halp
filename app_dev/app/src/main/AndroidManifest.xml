@@ -44,7 +44,8 @@
             android:label="Waiting time for appointment" />
         <activity
             android:name=".ScanQR"
-            android:label="Scan your QR code" />
+            android:label="Scan your QR code"
+            android:parentActivityName=".WaitingClinic" />
         <activity
             android:name=".ScanActivity"
             android:label="Scan your QR code" />
@@ -54,6 +55,9 @@
         <activity
             android:name=".WebViewActivity"
             android:label="IVLE Login" />
+        <activity android:name=".CameraPermissions" />
+        <activity android:name=".CameraPermissionsEmpty" />
+        <activity android:name=".AlarmPermissions"></activity>
     </application>
 
 </manifest>
