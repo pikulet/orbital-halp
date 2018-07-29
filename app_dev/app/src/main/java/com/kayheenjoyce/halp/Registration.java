@@ -151,9 +151,13 @@ public class Registration extends AppCompatActivity {
      * Opens a browser view for the user to sign in to OPEN ID and verify their registration
      */
     private void getAuthenticationToken() {
-        String requestSite = "https://openid.nus.edu.sg/auth/index/?openid.ns=http://specs.openid.net/auth/2.0&openid.ns.ax=http://openid.net/srv/ax/1.0&openid.ax.mode=fetch_request&openid.ax.required=email,firstname,lastname&openid.ax.type.email=http://axschema.org/contact/email&openid.ax.type.firstname=http://axschema.org/namePerson/first&openid.ax.type.lastname=http://axschema.org/namePerson/last&openid.mode=checkid_setup&openid.ns.sreg=http://openid.net/extensions/sreg/1.1&openid.sreg.required=email,firstname,lastname&openid.sreg.optional=nickname&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.realm=halp://complete&openid.return_to=halp://complete";
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("halp://complete"));
-        startActivity(browserIntent);
+//        String requestSite = "https://openid.nus.edu.sg/auth/index/?openid.ns=http://specs.openid.net/auth/2.0&openid.ns.ax=http://openid.net/srv/ax/1.0&openid.ax.mode=fetch_request&openid.ax.required=email,firstname,lastname&openid.ax.type.email=http://axschema.org/contact/email&openid.ax.type.firstname=http://axschema.org/namePerson/first&openid.ax.type.lastname=http://axschema.org/namePerson/last&openid.mode=checkid_setup&openid.ns.sreg=http://openid.net/extensions/sreg/1.1&openid.sreg.required=email,firstname,lastname&openid.sreg.optional=nickname&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.realm=halp://complete&openid.return_to=halp://complete";
+//        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("halp://complete"));
+//        startActivity(browserIntent);
+
+        Intent sendReg = new Intent(this,WebViewActivity.class);
+        startActivity(sendReg);
+
     }
 
     /**
