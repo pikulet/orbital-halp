@@ -23,8 +23,9 @@ public class RoomNumberAndNotes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room_number_and_notes);
+
         overridePendingTransition(R.anim.enter, R.anim.exit);
+        setContentView(R.layout.activity_room_number_and_notes);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -38,16 +39,34 @@ public class RoomNumberAndNotes extends AppCompatActivity {
         EditText1.setText(Open("Note1.txt"));
 
         updateRoomNumber();
-
     }
-    // currently using a random number generator to generate room numbers for patients
-    protected void updateRoomNumber() {
+
+    /**
+     * Updates the room number text box.
+     */
+    private void updateRoomNumber() {
+
+        TextView roomNumView = (TextView) findViewById(R.id.room_roomNum);
+
+        // Concatenates values to form the new display text.
+        int roomNum = getRoomNumber();
+        String roomNumDisplayBack = String.valueOf(roomNum);
+        String roomNumDisplayFront = String.valueOf(roomNumView.getText());
+        String roomNumDisplay = roomNumDisplayFront + " " + roomNumDisplayBack;
+
+        // Set the text
+        roomNumView.setText(roomNumDisplay);
+    }
+
+    /**
+     * Retrieves the room number and appends to the textbox.
+     * Currently uses a random number generator.
+     */
+    private int getRoomNumber() {
         Random rand = new Random();
         int randomWaitingTime = rand.nextInt(15) + 1;
 
-        // Updates the displayed text
-        TextView tView = findViewById(R.id.roomNum);
-        tView.setText(String.valueOf(randomWaitingTime));
+        return randomWaitingTime;
     }
 
     public void Save(String fileName) {
