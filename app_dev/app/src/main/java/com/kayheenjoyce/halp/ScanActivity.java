@@ -1,7 +1,9 @@
 package com.kayheenjoyce.halp;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -31,8 +33,23 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     public void onResume() {
         super.onResume();
+
+        checkCameraPermissions();
         mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
         mScannerView.startCamera();          // Start camera on resume
+    }
+
+    /**
+     * Checks if the user has granted this app permissions to use the camera
+     * If not, ask for it.
+     */
+    private void checkCameraPermissions() {
+        if (checkSelfPermission(android.Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA},
+                    100);
+            checkCameraPermissions();
+        }
     }
 
     @Override

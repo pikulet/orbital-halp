@@ -55,8 +55,6 @@
         <activity
             android:name=".WebViewActivity"
             android:label="IVLE Login" />
-        <activity android:name=".CameraPermissions" />
-        <activity android:name=".CameraPermissionsEmpty" />
     </application>
 
 </manifest>

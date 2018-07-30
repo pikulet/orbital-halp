@@ -298,7 +298,7 @@ public class WaitingClinic extends AppCompatActivity {
      * Proceeds to scan the QR code.
      */
     public void reachedClinic(View view) {
-        Intent reachedClinic = new Intent(this, CameraPermissionsEmpty.class);
+        Intent reachedClinic = new Intent(this, ScanActivity.class);
         startActivity(reachedClinic);
     }
 
