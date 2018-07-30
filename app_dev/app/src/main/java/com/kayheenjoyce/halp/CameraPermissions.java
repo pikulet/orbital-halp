@@ -29,14 +29,13 @@ public class CameraPermissions extends AppCompatActivity {
      * If not, ask for it.
      */
     private void checkCameraPermissions() {
-        for (int i = 0; i < 3; i++) {
-            if (checkSelfPermission(android.Manifest.permission.CAMERA)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.CAMERA},
-                        100);
-            }
-            proceedToScanQR();
+        if (checkSelfPermission(android.Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA},
+                    100);
+            checkCameraPermissions();
         }
+        proceedToScanQR();
     }
 
     /**
