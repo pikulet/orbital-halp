@@ -116,7 +116,7 @@ public class WaitingClinic extends AppCompatActivity {
      */
     private void updateWaitingTime() {
         final Handler handler = new Handler();
-        final int delay = 2500; //milliseconds
+        final int delay = 5000; //milliseconds
 
         handler.postDelayed(new Runnable(){
             public void run(){

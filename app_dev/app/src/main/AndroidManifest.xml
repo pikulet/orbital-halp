@@ -43,10 +43,6 @@
             android:name=".WaitingClinic"
             android:label="Waiting time for appointment" />
         <activity
-            android:name=".ScanQR"
-            android:label="Scan your QR code"
-            android:parentActivityName=".WaitingClinic" />
-        <activity
             android:name=".ScanActivity"
             android:label="Scan your QR code" />
         <activity

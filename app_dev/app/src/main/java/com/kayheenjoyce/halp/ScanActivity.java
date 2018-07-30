@@ -73,8 +73,6 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         // Log.v("tag", rawResult.getText()); // Prints scan results
         // Log.v("tag", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
 
-        ScanQR.tvresult.setText(rawResult.getText());
-
         // results of the qr code scanning
         String result = rawResult.getText();
         String pw = "33C07E7CBA240011B526A0573EDD4927A8971D95513D58C005F9F3295ED9E71E"; // hash of actual password kjaoyyhceeeyne
