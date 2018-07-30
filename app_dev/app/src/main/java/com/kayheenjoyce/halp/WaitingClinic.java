@@ -290,7 +290,7 @@ public class WaitingClinic extends AppCompatActivity {
         // Set a phone alarm based on the minutes selected and the current time.
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
         intent.putExtra(AlarmClock.EXTRA_MESSAGE, R.string.wait_reminder_alarm_msg);
-        intent.putExtra(AlarmClock.EXTRA_HOUR, currentTime.get(Calendar.HOUR));
+        intent.putExtra(AlarmClock.EXTRA_HOUR, currentTime.get(Calendar.HOUR_OF_DAY));
         intent.putExtra(AlarmClock.EXTRA_MINUTES, currentTime.get(Calendar.MINUTE));
         startActivity(intent);
     }

@@ -16,21 +16,21 @@ public class RegistrationEntry {
     private JSONObject entry = new JSONObject();
 
     /** Denotes keys for entries. */
-    public static final String patientRegistrationTime = "REG_TIME";
+    private static final String patientRegistrationTime = "REG_TIME";
+    public static final String name = "STUDENT_NAME";
     public static final String studentID = "STUDENT_ID";
-    public static final String authenticationSuccess = "AUTHENTICAITON_SUCCESS";
-    public static final String reminderSet = "REMINDER_SET";
-    public static final String patientHasFever = "HAS_FEVER";
-    public static final String patientHasCough = "HAS_COUGH";
-    public static final String patientWasOverseas = "WAS_OVERSEAS";
-    public static final String patientNotes = "ADDITIONAL_NOTES";
-    public static final String consultationTime = "CONSULT_TIME";
-    public static final String roomNumber = "ROOM_NUM";
+    public static final String authenticationToken = "AUTHENTICATION_TOKEN";
+    private static final String patientHasFever = "HAS_FEVER";
+    private static final String patientHasCough = "HAS_COUGH";
+    private static final String patientWasOverseas = "WAS_OVERSEAS";
+    private static final String patientNotes = "ADDITIONAL_NOTES";
+    private static final String consultationTime = "CONSULT_TIME";
+    private static final String roomNumber = "ROOM_NUM";
 
     /**
      * Constructor for a new com.kayheenjoyce.halp.RegistrationEntry
      */
-    public RegistrationEntry(Calendar registrationTime, Boolean hasFever, Boolean hasCough, Boolean wasOverseas, String additionalNotes) {
+    RegistrationEntry(Calendar registrationTime, Boolean hasFever, Boolean hasCough, Boolean wasOverseas, String additionalNotes) {
         try {
             this.entry.put(patientRegistrationTime, registrationTime.toString());
             this.entry.put(patientHasFever, hasFever.toString());
@@ -45,7 +45,7 @@ public class RegistrationEntry {
     /**
      * Constructor to modify a com.kayheenjoyce.halp.RegistrationEntry
      */
-    public RegistrationEntry(JSONObject entry) {
+    RegistrationEntry(JSONObject entry) {
         this.entry = entry;
     }
 
@@ -80,6 +80,15 @@ public class RegistrationEntry {
         } catch (Exception e) {
             e.printStackTrace();
             return 10;
+        }
+    }
+
+    /** Adds a name to the entry. */
+    public void addEntry(String JSONKey, String JSONValue) {
+        try {
+            this.entry.put(JSONKey, JSONValue);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

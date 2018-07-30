@@ -133,7 +133,7 @@ public class Registration extends AppCompatActivity {
      * Adds the registration entry to the local storage.
      * @param entry The RegistrationEntry created by the user, without the OPEN ID Authentication Token
      */
-    private void addEntryToStorage(RegistrationEntry entry) {
+    public void addEntryToStorage(RegistrationEntry entry) {
         String filename = MainActivity.fileName;
         String fileContents = entry.toString();
         FileOutputStream outputStream;
