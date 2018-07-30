@@ -135,10 +135,8 @@ public class WaitingClinic extends AppCompatActivity {
     private int updateWaitingTimeText() {
         TextView waitTimeDisplay = findViewById(R.id.wait_time);
 
-        String currentValueString = String.valueOf(waitTimeDisplay.getText());
-        Integer currentValueInt = Integer.parseInt(currentValueString);
-
-        Integer newValueInt = currentValueInt - 1;
+        int currentValueInt = getCurrentCountDownValue(); // read current value from view
+        int newValueInt = currentValueInt - 1; // Subtract 1 from countdown value
         String newTime = String.valueOf(newValueInt);
 
         waitTimeDisplay.setText(newTime);
@@ -162,6 +160,16 @@ public class WaitingClinic extends AppCompatActivity {
      */
     private int getCountDownTime() {
         return new Random().nextInt(30) + 30;
+    }
+
+    /**
+     * Retrieves the current countdown value
+     */
+    private int getCurrentCountDownValue() {
+        TextView waitTimeDisplay = findViewById(R.id.wait_time);
+
+        String currentValueString = String.valueOf(waitTimeDisplay.getText());
+        return Integer.parseInt(currentValueString);
     }
 
     /**
@@ -253,7 +261,7 @@ public class WaitingClinic extends AppCompatActivity {
      */
     private ArrayAdapter<Integer> calculateReminderTimes() {
 
-        int countDown = getCountDownTime();
+        int countDown = getCurrentCountDownValue();
 
         // Add timings to the arraylist in intervals of five minutes, up to but not including the
         // time left on the countdown
@@ -279,30 +287,11 @@ public class WaitingClinic extends AppCompatActivity {
         GregorianCalendar currentTime = (GregorianCalendar)GregorianCalendar.getInstance();
         currentTime.add(GregorianCalendar.MINUTE, minutesSelected);
 
-        // Set a phone notification based on the minutes selected and the current time.
-        //setAlarm(currentTime);
-
-        // Inform the user that the reminder has been set
-        showReminderSetToast(minutesSelected);
-    }
-
-    /**
-     * Proceeds to another activity to get the set alarm permission for the user.
-     */
-    private void getAlarmPermission() {
-        Intent alarmPermission = new Intent(this, AlarmPermissions.class);
-        startActivity(alarmPermission);
-    }
-
-    /**
-     * Sets a phone alarm based on the time selected.
-     */
-    private void setAlarm(Calendar targetCal) {
-
+        // Set a phone alarm based on the minutes selected and the current time.
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
         intent.putExtra(AlarmClock.EXTRA_MESSAGE, R.string.wait_reminder_alarm_msg);
-        intent.putExtra(AlarmClock.EXTRA_HOUR, targetCal.get(Calendar.HOUR));
-        intent.putExtra(AlarmClock.EXTRA_MINUTES, targetCal.get(Calendar.MINUTE));
+        intent.putExtra(AlarmClock.EXTRA_HOUR, currentTime.get(Calendar.HOUR));
+        intent.putExtra(AlarmClock.EXTRA_MINUTES, currentTime.get(Calendar.MINUTE));
         startActivity(intent);
     }
 
@@ -312,19 +301,6 @@ public class WaitingClinic extends AppCompatActivity {
     public void reachedClinic(View view) {
         Intent reachedClinic = new Intent(this, CameraPermissionsEmpty.class);
         startActivity(reachedClinic);
-    }
-
-    /**
-     * Checks if the user has granted this app permissions to use the camera
-     * If not, ask for it.
-     */
-    private void checkAlarmPermissions() {
-        if (checkSelfPermission(Manifest.permission.SET_ALARM)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.SET_ALARM},
-                    100);
-            checkAlarmPermissions();
-        }
     }
 
 }
