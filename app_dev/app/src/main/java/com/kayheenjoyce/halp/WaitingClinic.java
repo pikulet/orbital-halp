@@ -53,16 +53,9 @@ public class WaitingClinic extends AppCompatActivity {
 
         // Reminds user to set notification if not set already, the handler staggers the pop up
         // so they don't both appear at the same time, making screen less cluttered
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                if (!wasReminderSet()) {
-                    showReminderToast();
-                }
-            }
-        }, 500);
-
+        if (!wasReminderSet()) {
+            showReminderToast();
+        }
     }
 
     @Override
@@ -128,8 +121,10 @@ public class WaitingClinic extends AppCompatActivity {
 
         handler.postDelayed(new Runnable(){
             public void run(){
-                updateWaitingTimeText();
-                handler.postDelayed(this, delay);
+                // Checks if countdown is above 0
+                if (updateWaitingTimeText() > 0) {
+                    handler.postDelayed(this, delay);
+                }
             }
         }, delay);
     }
@@ -137,7 +132,7 @@ public class WaitingClinic extends AppCompatActivity {
     /**
      * Updates the displayed waiting time.
      */
-    private void updateWaitingTimeText() {
+    private int updateWaitingTimeText() {
         TextView waitTimeDisplay = findViewById(R.id.wait_time);
 
         String currentValueString = String.valueOf(waitTimeDisplay.getText());
@@ -158,6 +153,8 @@ public class WaitingClinic extends AppCompatActivity {
         }
 
         waitTimeDisplay.setTextColor(textColour);
+
+        return newValueInt;
     }
 
     /**
@@ -278,23 +275,12 @@ public class WaitingClinic extends AppCompatActivity {
      */
     private void setAlarmIn(int minutesSelected) {
 
-        /*
-        // Get alarm permission
-        if (checkSelfPermission(Manifest.permission.SET_ALARM)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.SET_ALARM},
-                    105);
-            checkAlarmPermissions();
-        }
-
         // Calculates the time that the notification should be set
         GregorianCalendar currentTime = (GregorianCalendar)GregorianCalendar.getInstance();
         currentTime.add(GregorianCalendar.MINUTE, minutesSelected);
 
         // Set a phone notification based on the minutes selected and the current time.
         //setAlarm(currentTime);
-
-        */
 
         // Inform the user that the reminder has been set
         showReminderSetToast(minutesSelected);
@@ -315,8 +301,8 @@ public class WaitingClinic extends AppCompatActivity {
 
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
         intent.putExtra(AlarmClock.EXTRA_MESSAGE, R.string.wait_reminder_alarm_msg);
-        intent.putExtra(AlarmClock.EXTRA_HOUR, /*targetCal.get(Calendar.HOUR)*/ 10);
-        intent.putExtra(AlarmClock.EXTRA_MINUTES, /* targetCal.get(Calendar.MINUTE)*/ 20);
+        intent.putExtra(AlarmClock.EXTRA_HOUR, targetCal.get(Calendar.HOUR));
+        intent.putExtra(AlarmClock.EXTRA_MINUTES, targetCal.get(Calendar.MINUTE));
         startActivity(intent);
     }
 
