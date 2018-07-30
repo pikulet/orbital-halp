@@ -1,14 +1,17 @@
 package com.kayheenjoyce.halp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -26,25 +29,36 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
+        // Horizontal transition between activities
+        overridePendingTransition(R.anim.enter, R.anim.exit);
+
+        // Set the webView, ensure that can extract the html code on the page.
         webview = (WebView)findViewById(R.id.webView);
         webview.getSettings().setJavaScriptEnabled(true);
         webview.addJavascriptInterface(new MyJavaScriptInterface(), "HTMLOUT");
 
-
+        // This code allows us to check if sign in successful and retrieve the token
         webview.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageFinished(WebView view, String uri) {
                 //authentication successful
                 if (uri.contains("/api/login/login_result.ashx") && uri.contains("&r=0")) {
+
+                    showPleaseWaitToast();
                     //collect the token on the webview body
                     webview.loadUrl("javascript:HTMLOUT.processHTML(document.documentElement.innerText);");
-                   // new GetUrlContentTask().execute(uri);
-                    finish();
-                    // to start the next activity
-                    Intent regComplete = new Intent(WebViewActivity.this, WaitingClinic.class);
-                    startActivity(regComplete);
                 }
 
+            }
+
+            private void showPleaseWaitToast() {
+                Context context = getApplicationContext();
+                String text = getString(R.string.web_view_toast);
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.BOTTOM, 0, 100);
+                toast.show();
             }
 
             @Override
@@ -59,56 +73,23 @@ public class WebViewActivity extends AppCompatActivity {
             }
         });
 
+        // First page to load.
         webview.loadUrl("https://ivle.nus.edu.sg/api/login/?apikey=RZBCGrDddNHkXGG7Y9Q4Q");
     }
 
+    /**
+     * This class e will start the sendReg activity to process the html collected and closes this activity
+     */
     private class MyJavaScriptInterface {
         @JavascriptInterface
         @SuppressWarnings("unused")
         public void processHTML(String html) {
             Log.d("html", html);
             // process the html as needed by the app
-        }
-    }
-
-    public static void printResult(String x) {
-        Log.d("result", x);
-    }
-
-
-    private class GetUrlContentTask extends AsyncTask<String, Integer, String> {
-
-        protected String doInBackground(String... urls) {
-            String content = "", line;
-            try {
-                URL url = new URL(urls[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-                connection.setDoOutput(true);
-                connection.setConnectTimeout(5000);
-                connection.setReadTimeout(5000);
-                connection.connect();
-
-                BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                while ((line = rd.readLine()) != null) {
-                    content += line + "\n";
-                }
-            } catch(Exception e) {
-                Log.d("content", "exception occured");
-
-            }
-
-            Log.d("content", content);
-            return content;
-        }
-
-        protected void onProgressUpdate(Integer... progress) {
-        }
-
-        protected void onPostExecute(String result) {
-            // this is executed on the main thread after the process is over
-            // update your UI here
-            WebViewActivity.printResult(result);
+            Intent sendReg = new Intent(WebViewActivity.this, SendingReg.class);
+            sendReg.putExtra("token", html);
+            startActivity(sendReg);
+            finish();
         }
 
     }
