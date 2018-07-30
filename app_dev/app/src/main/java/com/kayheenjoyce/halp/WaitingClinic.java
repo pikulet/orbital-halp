@@ -265,7 +265,7 @@ public class WaitingClinic extends AppCompatActivity {
         // Add timings to the arraylist in intervals of five minutes, up to but not including the
         // time left on the countdown
         ArrayList<Integer> timings = new ArrayList<>();
-        for (Integer i = 15; i < countDown; i += 5) {
+        for (Integer i = 15; i < countDown - 5; i += 5) {
             timings.add(i);
         }
 
@@ -292,6 +292,8 @@ public class WaitingClinic extends AppCompatActivity {
         intent.putExtra(AlarmClock.EXTRA_HOUR, currentTime.get(Calendar.HOUR_OF_DAY));
         intent.putExtra(AlarmClock.EXTRA_MINUTES, currentTime.get(Calendar.MINUTE));
         startActivity(intent);
+
+        showReminderSetToast(minutesSelected);
     }
 
     /**
