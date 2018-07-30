@@ -38,7 +38,6 @@ public class WaitingClinic extends AppCompatActivity {
 
         // Horizontal transition between activities
         overridePendingTransition(R.anim.enter, R.anim.exit);
-
         setContentView(R.layout.activity_waiting_clinic);
 
         // Retrieve the RegistrationEntry

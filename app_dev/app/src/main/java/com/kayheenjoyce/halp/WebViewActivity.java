@@ -27,10 +27,10 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
 
         // Horizontal transition between activities
         overridePendingTransition(R.anim.enter, R.anim.exit);
+        setContentView(R.layout.activity_web_view);
 
         // Set the webView, ensure that can extract the html code on the page.
         webview = (WebView)findViewById(R.id.webView);
