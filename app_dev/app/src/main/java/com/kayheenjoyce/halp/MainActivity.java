@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -77,22 +78,25 @@ public class MainActivity extends AppCompatActivity {
         // Closing time
         Calendar closingTime = Calendar.getInstance();
         closingTime.set(Calendar.HOUR_OF_DAY, 18);
+        closingTime.set(Calendar.MINUTE, 0);
 
         // Lunch time starts
         Calendar lunchStartTime = Calendar.getInstance();
-        openingTime.set(Calendar.HOUR_OF_DAY, 12);
-        openingTime.set(Calendar.MINUTE, 30);
+        lunchStartTime.set(Calendar.HOUR_OF_DAY, 12);
+        lunchStartTime.set(Calendar.MINUTE, 29);
 
         // Lunch time ends
         Calendar lunchEndTime = Calendar.getInstance();
-        openingTime.set(Calendar.HOUR_OF_DAY, 13);
-        openingTime.set(Calendar.MINUTE, 30);
+        lunchEndTime.set(Calendar.HOUR_OF_DAY, 13);
+        lunchEndTime.set(Calendar.MINUTE, 31);
 
-        if (currentCalendar.DAY_OF_WEEK == Calendar.SATURDAY ||
-            currentCalendar.DAY_OF_WEEK == Calendar.SUNDAY) {
+        int dayOfWeek = currentCalendar.get(Calendar.DAY_OF_WEEK);
+
+        if (dayOfWeek == Calendar.SATURDAY ||
+            dayOfWeek == Calendar.SUNDAY) {
             // The clinic is not open on weekends
             clinicIsOpen = false;
-        } else if (currentCalendar.before(openingTime) || currentCalendar.after(closingTime)) {
+        } else if (currentCalendar.before(openingTime)) {
             // The clinic has fixed opening hours
             clinicIsOpen = false;
         } else if (currentCalendar.after(lunchStartTime) && currentCalendar.before(lunchEndTime)) {
