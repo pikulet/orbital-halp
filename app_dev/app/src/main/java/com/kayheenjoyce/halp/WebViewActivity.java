@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -46,7 +47,9 @@ public class WebViewActivity extends AppCompatActivity {
 
                     showPleaseWaitToast();
                     //collect the token on the webview body
+                    webview.setVisibility(View.GONE);
                     webview.loadUrl("javascript:HTMLOUT.processHTML(document.documentElement.innerText);");
+
                 }
 
             }
@@ -64,7 +67,7 @@ public class WebViewActivity extends AppCompatActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String uri){
                 if(uri.contains("/api/login/login_result.ashx") && uri.contains("&r=0")) {
-                    onPageFinished(view, uri);
+                    //onPageFinished(view, uri) will be called thus.
                     return false;
                 } else {
                     view.loadUrl(uri);
