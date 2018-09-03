@@ -1,9 +1,11 @@
 package com.kayheenjoyce.halp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import java.util.Random;
 public class RoomNumberAndNotes extends AppCompatActivity {
 
     EditText EditText1;
+    int roomNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,18 +41,23 @@ public class RoomNumberAndNotes extends AppCompatActivity {
         EditText1 = (EditText) findViewById(R.id.EditText1);
         EditText1.setText(Open("Note1.txt"));
 
-        updateRoomNumber();
+        // retrieve stored value if present
+        roomNum = this.getSharedPreferences("X", MODE_PRIVATE).getInt("RoomNum",0);
+
+        if(roomNum == 0) {
+            roomNum = getRoomNumber();
+        }
+        updateRoomNumber(roomNum);
     }
 
     /**
      * Updates the room number text box.
      */
-    private void updateRoomNumber() {
+    private void updateRoomNumber(int roomNum) {
 
         TextView roomNumView = (TextView) findViewById(R.id.room_roomNum);
 
         // Concatenates values to form the new display text.
-        int roomNum = getRoomNumber();
         String roomNumDisplayBack = String.valueOf(roomNum);
         String roomNumDisplayFront = String.valueOf(roomNumView.getText());
         String roomNumDisplay = roomNumDisplayFront + " " + roomNumDisplayBack;
@@ -117,7 +125,7 @@ public class RoomNumberAndNotes extends AppCompatActivity {
         this.deleteFile(MainActivity.fileName);
 
         // this block of code results in the app being closed after the im done button is clicked
-        Intent CloseInt = new Intent(getApplicationContext(), MainActivity.class);
+        Intent CloseInt = new Intent(getApplicationContext(), Dispatcher.class);
         CloseInt.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         CloseInt.putExtra("CloseApp", true);
         startActivity(CloseInt);
@@ -127,8 +135,26 @@ public class RoomNumberAndNotes extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
+        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("lastActivity", ScanActivity.class.getName());
+        editor.apply();
+
         // Horizontal transition between activities
         overridePendingTransition(R.anim.reverse_enter, R.anim.reverse_exit);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Log.d("try", "pause called");
+
+        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("RoomNum",roomNum);
+        editor.putString("lastActivity", getClass().getName());
+        editor.apply();
     }
 
 }

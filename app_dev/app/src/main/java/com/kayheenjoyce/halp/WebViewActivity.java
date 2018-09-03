@@ -3,6 +3,7 @@ package com.kayheenjoyce.halp;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -96,5 +97,25 @@ public class WebViewActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
 
+        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("lastActivity", getClass().getName());
+        editor.apply();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("lastActivity", Registration.class.getName());
+        editor.apply();
+
+        overridePendingTransition(R.anim.reverse_enter, R.anim.reverse_exit);
+    }
 }

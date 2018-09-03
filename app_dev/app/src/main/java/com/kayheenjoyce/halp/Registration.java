@@ -2,6 +2,7 @@ package com.kayheenjoyce.halp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -45,6 +46,11 @@ public class Registration extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
+        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("lastActivity", MainActivity.class.getName());
+        editor.apply();
 
         // Horizontal transition between activities
         overridePendingTransition(R.anim.reverse_enter, R.anim.reverse_exit);
@@ -118,8 +124,8 @@ public class Registration extends AppCompatActivity {
      */
     private RegistrationEntry createRegEntry() {
         boolean hasFever = checkedStates.get(findViewById(R.id.reg_fever_button));
-        boolean hasCough = checkedStates.get(findViewById(R.id.reg_fever_button));
-        boolean wasOverseas = checkedStates.get(findViewById(R.id.reg_fever_button));
+        boolean hasCough = checkedStates.get(findViewById(R.id.reg_cough_button));
+        boolean wasOverseas = checkedStates.get(findViewById(R.id.reg_overseas_button));
 
         EditText additionalNotesVIew = (EditText) findViewById(R.id.reg_others);
         String additionalNotes = additionalNotesVIew.getText().toString();
@@ -171,8 +177,18 @@ public class Registration extends AppCompatActivity {
         // Save entry to local storage
         addEntryToStorage(regEntry);
 
-        // Redirect user to retrieve NUS Open ID Authentication Token
+        // Redirect user to retrieve NUS IVLE LAPI Authentication Token
         getAuthenticationToken();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("lastActivity", getClass().getName());
+        editor.apply();
     }
 
 }

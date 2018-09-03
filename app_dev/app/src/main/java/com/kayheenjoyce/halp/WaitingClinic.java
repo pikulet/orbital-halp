@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Handler;
@@ -26,11 +27,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class WaitingClinic extends AppCompatActivity {
 
-    private JSONObject entry;
+    private JSONObject entry; // assume that this is stored inside the phone
     private boolean reminderSet = false;
+    private int countdownTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,15 @@ public class WaitingClinic extends AppCompatActivity {
 
         // Set countdown value
         TextView waitCountdownTime = findViewById(R.id.wait_time);
-        waitCountdownTime.setText(String.valueOf(getCountDownTime()));
+        countdownTime = this.getSharedPreferences("X", MODE_PRIVATE).getInt("CountDown",0); // account for stored
+        if (countdownTime == 0) {
+            countdownTime = getCountDownTime();
+        } else { // presence of stored value
+            long milliLeft = getSharedPreferences("X", MODE_PRIVATE).getLong("TimeLast", 0) - GregorianCalendar.getInstance().getTimeInMillis();
+            int milliInMin = (int)milliLeft/1000/60;
+            countdownTime -= milliInMin;
+        }
+        waitCountdownTime.setText(String.valueOf(countdownTime));
 
         // Reminds user to be there at clinic 15 minutes before actual time
         showComeEarlyToast();
@@ -175,6 +186,7 @@ public class WaitingClinic extends AppCompatActivity {
      * Checks if a phone alarm has been set.
      */
     private boolean wasReminderSet() {
+        reminderSet = this.getSharedPreferences("X", MODE_PRIVATE).getBoolean("Remind",false);
         return this.reminderSet;
     }
 
@@ -250,6 +262,8 @@ public class WaitingClinic extends AppCompatActivity {
                     })
                     .create();
 
+            reminderSet = true;
+
             alertDialog.show();
         }
     }
@@ -300,6 +314,28 @@ public class WaitingClinic extends AppCompatActivity {
     public void reachedClinic(View view) {
         Intent reachedClinic = new Intent(this, ScanActivity.class);
         startActivity(reachedClinic);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        // deals with the time left
+        TextView waitTimeDisplay = findViewById(R.id.wait_time);
+        int currentValueInt = getCurrentCountDownValue(); // read current value from view
+        editor.putInt("CountDown",currentValueInt);
+
+        // deals with the current time when closed
+        Long currentTime = GregorianCalendar.getInstance().getTimeInMillis(); // store the current system time.
+        editor.putLong("TimeLast", currentTime);
+
+        // deals with whether reminder has been set
+        editor.putBoolean("Remind", reminderSet); // store whether reminder set
+        editor.putString("lastActivity", getClass().getName());
+        editor.apply();
     }
 
 }

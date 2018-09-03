@@ -3,6 +3,7 @@ package com.kayheenjoyce.halp;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,16 +56,24 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     public void onPause() {
         super.onPause();
-        mScannerView.stopCamera();           // Stop camera on pause
+        mScannerView.stopCamera(); // Stop camera on pause
+
+            SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("lastActivity", getClass().getName());
+            editor.commit();
     }
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         // Horizontal transition between activities
         overridePendingTransition(R.anim.reverse_enter, R.anim.reverse_exit);
 
-        Intent undoReach = new Intent(this, WaitingClinic.class);
-        startActivity(undoReach);
+        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("lastActivity", WaitingClinic.class.getName());
+        editor.apply();
     }
 
     @Override
@@ -117,6 +126,8 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         Intent finalPage = new Intent(ScanActivity.this, RoomNumberAndNotes.class);
         startActivity(finalPage);
     }
+
+
 
 }
 
