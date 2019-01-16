@@ -25,3 +25,7 @@ We aim to create an application that allow users to take a consultation number o
 * **Notification reminders to proceed to the clinic:** Users can maximise the time spent resting outside the clinic
 
 * **Notepad:** Users can jot down and consolidate the key information they want to tell the doctor
+
+### Poster
+![Poster explanation](https://github.com/pikulet/orbital-halp/blob/master/resources/poster.png "Design Considerations")
+
