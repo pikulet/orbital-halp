@@ -27,5 +27,10 @@ We aim to create an application that allow users to take a consultation number o
 * **Notepad:** Users can jot down and consolidate the key information they want to tell the doctor
 
 ### Poster
-![Poster explanation](https://github.com/pikulet/orbital-halp/blob/master/resources/poster.png "Design Considerations")
+
+## Last Milestone
+![Poster explanation](https://github.com/pikulet/orbital-halp/blob/master/resources/milestone_3.png "Design Considerations")
+
+## Final Poster Presentation
+![Final poster](https://github.com/pikulet/orbital-halp/blob/master/resources/final_poster.png "Poster Showcase")
 
