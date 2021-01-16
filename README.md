@@ -1,6 +1,6 @@
 # :adhesive_bandage: orbital-halp :adhesive_bandage:
 
-This was my first SWE project, an android application to remotely get a queue number for the doctor!
+This was my first SWE project, an android application to remotely get a queue number for the doctor.
 
 halp: Queueing for the doctor in comfort 
 
@@ -10,6 +10,7 @@ Proposed Level of Achievement: Gemini
 An online queueing application for patients going to NUS’s UHC, reducing both the waiting time of patients and the crowd in UHC. Users will be authenticated using their matriculation number, which is the current system used in the clinic. The app will take their information and push a registration to UHC. This queuing app will co-exist with the physical registration counter, and will be used by non-emergency student patients. Student patients hence have an option of queueing in the comfort of their dormitories or queueing at the UHC, whichever they prefer. 
 
 **Problem Motivation**
+
 Sick patients have to make their way down to the University Health Centre to register and take a queue number, thereafter waiting about 1 hour on average to consult the doctor. This not only accentuates the discomfort caused by their illness, but also creates an unnecessary crowd at the clinic, which affects the well-being of waiting patients and nurses alike. 
 
 We aim to create an application that allow users to take a consultation number online, so that they may wait at a more comfortable location (for instance, their dorm room or a quiet resting spot). This also reduces the crowd at the UHC, and hence allow the staff at the UHC to carry out their tasks more efficiently. 
